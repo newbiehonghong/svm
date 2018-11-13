@@ -1,2 +1,5 @@
 # svm
-spring boot+vue
+spring boot
+vue
+mybatis
+

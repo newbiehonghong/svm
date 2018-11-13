@@ -1,1 +1,0 @@
-git config http.proxy http://wu.yong:Uijk!234@dl-proxy.neusoft.com:8080
