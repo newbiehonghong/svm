@@ -1,5 +1,7 @@
 package svm.sample.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @PostMapping("/save")
     @RequiredPermission("user/add")
     public void saveUser(@RequestBody UserDO user) {
@@ -44,6 +48,7 @@ public class UserController {
 
     @PostMapping("/get/{id}")
     public Object getUser(@PathVariable Long id) {
+        logger.debug("get id: {0}", id);
         return userService.getUser(id);
     }
 

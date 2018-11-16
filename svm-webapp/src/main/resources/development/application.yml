@@ -50,5 +50,10 @@ pagehelper:
   params: count=countSql
   returnPageInfo: check
 
+
+logging:
+  config: classpath:logback-spring.xml
+  logdir: e:/temp/log
+
 app:
   allowedCors: http://localhost:8080
