@@ -1,6 +1,6 @@
 package svm.security.session;
 
-import svm.security.dto.User;
+import svm.security.entity.User;
 
 public class UserSession {
     private User user;

@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 public interface PermissionService {
-    Set<String> getServicePermissionSet(String userId);
+    Set<String> getServicePermissionSet(Long userId);
 
-    List<String> getWebPermissionList(String userId);
+    List<String> getPagePermissionList(Long userId);
 
     UserSession getUserSession(String token);
 }

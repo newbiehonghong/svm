@@ -1,13 +1,12 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /svm
+
 spring:
   datasource:
-    name: sample
-    type: com.alibaba.druid.pool.DruidDataSource
-    #druid相关配置
-    druid:
-      #监控统计拦截的filters
-      filters: stat
+    sample:
       driver-class-name: org.postgresql.Driver
-      #基本属性
       url: jdbc:postgresql://localhost:5432/svm
       username: sample
       password: sample
@@ -28,13 +27,15 @@ spring:
       #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
-    jackson:
-      date-format: yyyy-MM-dd HH:mm:ss
-      time-zone: GMT+8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 
 mybatis:
-  mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
-  type-aliases-package: svm.*.entity  # 注意：对应实体类的路径
+  #多数据源时下面两行在程序中配置
+  #mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  #type-aliases-package: svm.*.entity  # 注意：对应实体类的路径
+  #多数据源时此配置无法自动加载，需要在程序中加载
   configuration:
     mapUnderscoreToCamelCase: true
 
@@ -44,3 +45,8 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
   returnPageInfo: check
+
+
+logging:
+  config: classpath:logback-spring.xml
+  logdir: e:/temp/log

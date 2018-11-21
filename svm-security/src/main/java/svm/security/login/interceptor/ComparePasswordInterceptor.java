@@ -1,7 +1,7 @@
 package svm.security.login.interceptor;
 
 import org.springframework.stereotype.Component;
-import svm.security.dto.User;
+import svm.security.entity.User;
 import svm.security.interceptor.BaseInterceptor;
 import svm.security.login.LoginConstants;
 

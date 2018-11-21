@@ -78,7 +78,7 @@
                 return scope.row.attachmentId != null;
             },
             getImageUrl(attachmentId) {
-                return apiURL + "/user/download/" + attachmentId + "?" + getToken();
+                return apiURL + "/sample/user/download/" + attachmentId + "?" + getToken();
             }
         }
     }

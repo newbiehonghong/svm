@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="svm.sample.dao.UserDAO" >
+<mapper namespace="svm.sample.dao.SampleUserMapper" >
 
     <insert id="save" parameterType="svm.sample.entity.UserDO">
         insert into sample_emp(emp_id,name,birthday,province,city,dept_id,salary,work_year,gender,memo,file_name,attachment_id)

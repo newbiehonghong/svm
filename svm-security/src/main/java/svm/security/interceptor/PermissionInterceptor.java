@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.method.HandlerMethod;
 import svm.security.annotation.RequiredPermission;
-import svm.security.dto.User;
+import svm.security.entity.User;
 import svm.security.service.PermissionService;
 import svm.security.session.SessionContext;
 
@@ -23,7 +23,7 @@ public class PermissionInterceptor extends BaseInterceptor {
     @Override
     protected boolean doPreHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         User user = SessionContext.get().getUser();
-        String userId = user.getId();
+        Long userId = user.getId();
         // 验证权限
         if (this.hasPermission(userId, handler)) {
             return true;
@@ -39,7 +39,7 @@ public class PermissionInterceptor extends BaseInterceptor {
      * @param handler
      * @return
      */
-    private boolean hasPermission(String userId, Object handler) {
+    private boolean hasPermission(Long userId, Object handler) {
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             // 获取方法上的注解

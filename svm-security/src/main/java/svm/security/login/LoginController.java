@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import svm.security.dto.User;
+import svm.security.entity.User;
 import svm.security.service.PermissionService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +19,12 @@ public class LoginController {
     @ResponseBody
     public LoginResponse login(HttpServletRequest request) {
         User user = (User) request.getAttribute(LoginConstants.ATTRIBUTE_USER);
-        String userId = user.getId();
+        Long userId = user.getId();
         String nickname = user.getNickname();
-        List<String> permissions = permissionService.getWebPermissionList(userId);
+        List<String> permissions = permissionService.getPagePermissionList(userId);
 
         LoginResponse loginResponse = new LoginResponse();
-        loginResponse.setToken(userId);//TODO
+        loginResponse.setToken(user.getName());//TODO
         loginResponse.setNickname(nickname);
         loginResponse.setPermissions(permissions);
 

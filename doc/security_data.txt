@@ -1,0 +1,40 @@
+insert into sys_user(user_id, name, nickname, password, create_time)
+ values (1, 'admin', '超级管理员', 'a', current_date)
+insert into sys_user(user_id, name, nickname, password, create_time)
+ values (2, 'test', '测试人员', 'a', current_date)
+
+insert into sys_role(role_id, name)
+ values ('admin', '超级管理员');
+insert into sys_role(role_id, name)
+ values ('test', '测试人员');
+ 
+insert into sys_user_role_map(user_id, role_id)
+ values (1, 'admin');
+insert into sys_user_role_map(user_id, role_id)
+ values (2, 'test');
+
+insert into sys_permission(permission_id, name, type)
+ values ('sample/user/query', '示例工程用户查询', 'service');
+insert into sys_permission(permission_id, name, type)
+ values ('sample/user/add', '示例工程用户新增及修改', 'service');
+insert into sys_permission(permission_id, name, type)
+ values ('sample/user/delete', '示例工程用户删除', 'service');
+insert into sys_permission(permission_id, name, type)
+ values ('sample/p_admin', '示例工程管理员用户权限', 'page');
+insert into sys_permission(permission_id, name, type)
+ values ('sample/p_test', '示例工程测试用户权限', 'page');
+ 
+insert into sys_role_permission_map(role_id, permission_id)
+ values ('admin', 'sample/user/query');
+insert into sys_role_permission_map(role_id, permission_id)
+ values ('admin', 'sample/user/add');
+insert into sys_role_permission_map(role_id, permission_id)
+ values ('admin', 'sample/user/delete');
+insert into sys_role_permission_map(role_id, permission_id)
+ values ('admin', 'sample/p_admin');
+ insert into sys_role_permission_map(role_id, permission_id)
+ values ('test', 'sample/user/query');
+insert into sys_role_permission_map(role_id, permission_id)
+ values ('test', 'sample/user/add');
+insert into sys_role_permission_map(role_id, permission_id)
+ values ('test', 'sample/p_test');

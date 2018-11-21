@@ -19,8 +19,8 @@ import svm.security.annotation.RequiredPermission;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping(value = "/user")
-@RequiredPermission("user/query")
+@RequestMapping(value = "/sample/user")
+@RequiredPermission("sample/user/query")
 public class UserController {
 
     @Autowired
@@ -29,19 +29,19 @@ public class UserController {
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @PostMapping("/save")
-    @RequiredPermission("user/add")
+    @RequiredPermission("sample/user/add")
     public void saveUser(@RequestBody UserDO user) {
         userService.saveUser(user);
     }
 
     @PostMapping("/update")
-    @RequiredPermission("user/add")
+    @RequiredPermission("sample/user/add")
     public void updateUser(@RequestBody UserDO user) {
         userService.updateUser(user);
     }
 
     @PostMapping("/delete/{id}")
-    @RequiredPermission("user/delete")
+    @RequiredPermission("sample/user/delete")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }

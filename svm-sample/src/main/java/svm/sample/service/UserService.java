@@ -6,7 +6,7 @@ import svm.sample.entity.UserDO;
 import svm.sample.service.dto.UserQueryDTO;
 
 public interface UserService {
-    void saveUser(UserDO user);
+    Long saveUser(UserDO user);
 
     void updateUser(UserDO user);
 

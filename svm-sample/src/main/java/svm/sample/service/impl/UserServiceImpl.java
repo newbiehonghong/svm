@@ -4,8 +4,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import svm.common.generator.IGenerator;
-import svm.sample.dao.UserDAO;
+import svm.sample.dao.SampleUserMapper;
 import svm.sample.entity.UserAttachment;
 import svm.sample.entity.UserDO;
 import svm.sample.service.UserService;
@@ -20,50 +21,53 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDAO userDAO;
+    private SampleUserMapper sampleUserMapper;
 
     @Autowired
     private IGenerator iGenerator;
 
+    @Transactional
     @Override
-    public void saveUser(UserDO user) {
-        user.setId(iGenerator.generateLong());
-        userDAO.save(user);
+    public Long saveUser(UserDO user) {
+        long id = iGenerator.generateLong();
+        user.setId(id);
+        sampleUserMapper.save(user);
+        return id;
     }
 
     @Override
     public void updateUser(UserDO user) {
-        userDAO.update(user);
+        sampleUserMapper.update(user);
     }
 
     @Override
     public void deleteUser(Long id) {
-        userDAO.delete(id);
+        sampleUserMapper.delete(id);
     }
 
     @Override
     public UserDO getUser(Long id) {
-        return userDAO.getUser(id);
+        return sampleUserMapper.getUser(id);
     }
 
     @Override
     public PageInfo<UserDO> queryUsers(UserQueryDTO userQueryDTO, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<UserDO> users = userDAO.queryUsers(userQueryDTO);
+        List<UserDO> users = sampleUserMapper.queryUsers(userQueryDTO);
         return new PageInfo(users);
     }
 
     @Override
     public PageInfo<UserDO> queryAllUsers(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<UserDO> users = userDAO.queryAllUsers();
+        List<UserDO> users = sampleUserMapper.queryAllUsers();
         return new PageInfo(users);
     }
 
     @Override
     public PageInfo<UserDO> queryDownloadUsers(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<UserDO> users = userDAO.queryDownloadUsers();
+        List<UserDO> users = sampleUserMapper.queryDownloadUsers();
         return new PageInfo(users);
     }
 
@@ -71,13 +75,13 @@ public class UserServiceImpl implements UserService {
     public Long saveAttachment(UserAttachment attachment) {
         Long attachmentId = iGenerator.generateLong();
         attachment.setAttachmentId(attachmentId);
-        userDAO.saveAttachment(attachment);
+        sampleUserMapper.saveAttachment(attachment);
         return attachmentId;
     }
 
     @Override
     public UserAttachment queryAttachment(Long id) {
-        return userDAO.queryAttachment(id);
+        return sampleUserMapper.queryAttachment(id);
     }
 }
 

@@ -7,10 +7,10 @@
 
     <!-- classPathEntry 元素 用于添加运行类路径位置到类路径中，加载数据库驱动依赖的jar包 <classPathEntry location="mysql-connector-java-5.1.25.jar" />-->
     <!-- <context> 元素用于指定生成一组对象的环境 -->
-    <context id="sample" defaultModelType="hierarchical" targetRuntime="MyBatis3">
+    <context id="sample" targetRuntime="MyBatis3">
         <!-- 指定连接的目标数据库,需要数据库驱动，url，用户名，密码 -->
         <jdbcConnection driverClass="org.postgresql.Driver"
-            connectionURL="jdbc:postgresql://localhost:5432/svm" userId="sample"
+            connectionURL="jdbc:postgresql://localhost:5432/svm" id="sample"
             password="sample">
         </jdbcConnection>
         <!-- java 类型转换器：当false时，会根据数据库字段的精度和长度来生成对应的java数据类型，具体参照官方文档解释； 

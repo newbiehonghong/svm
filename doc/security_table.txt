@@ -1,0 +1,44 @@
+DROP TABLE sys_user;
+DROP TABLE sys_role;
+DROP TABLE sys_user_role_map;
+DROP TABLE sys_permission;
+DROP TABLE sys_role_permission_map;
+
+CREATE TABLE sys_user
+(
+    user_id numeric(18,0) NOT NULL,
+    name character varying(64),
+    nickname character varying(64),
+    password character varying(32),
+    create_time date,
+    CONSTRAINT sys_user_pk PRIMARY KEY (user_id)
+);
+
+CREATE TABLE sys_role
+(
+    role_id character varying(32) NOT NULL,
+    name character varying(64),
+    CONSTRAINT sys_role_pk PRIMARY KEY (role_id)
+);
+
+CREATE TABLE sys_user_role_map
+(
+    user_id numeric(18,0) NOT NULL,
+    role_id character varying(32) NOT NULL,
+    CONSTRAINT sys_user_role_map_pk PRIMARY KEY (user_id, role_id)
+);
+
+CREATE TABLE sys_permission
+(
+    permission_id character varying(64) NOT NULL,
+    name character varying(64),
+	type character varying(16),
+    CONSTRAINT sys_permission_pk PRIMARY KEY (permission_id)
+);
+
+CREATE TABLE sys_role_permission_map
+(
+    role_id character varying(32) NOT NULL,
+	permission_id character varying(64) NOT NULL,
+    CONSTRAINT sys_role_permission_map_pk PRIMARY KEY (role_id, permission_id)
+);

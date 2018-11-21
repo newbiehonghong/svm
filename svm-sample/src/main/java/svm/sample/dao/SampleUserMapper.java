@@ -6,7 +6,7 @@ import svm.sample.service.dto.UserQueryDTO;
 
 import java.util.List;
 
-public interface UserDAO {
+public interface SampleUserMapper {
     void save(UserDO user);
 
     void update(UserDO user);

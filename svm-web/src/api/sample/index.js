@@ -6,7 +6,7 @@ import request from '@/utils/request';
  */
 export function saveUser(user) {
     return request({
-        url: '/user/save',
+        url: '/sample/user/save',
         data: user
     });
 };
@@ -17,7 +17,7 @@ export function saveUser(user) {
  */
 export function updateUser(user) {
     return request({
-        url: '/user/update',
+        url: '/sample/user/update',
         data: user
     });
 };
@@ -28,7 +28,7 @@ export function updateUser(user) {
  */
 export function deleteUser(id) {
     return request({
-        url: '/user/delete/' + id
+        url: '/sample/user/delete/' + id
     });
 };
 
@@ -38,7 +38,7 @@ export function deleteUser(id) {
  */
 export function queryAllUsers(pageNum) {
     return request({
-        url: '/user/queryAll',
+        url: '/sample/user/queryAll',
         params: {pageNum}
     });
 };
@@ -49,7 +49,7 @@ export function queryAllUsers(pageNum) {
  */
 export function queryDownloadUsers(pageNum) {
     return request({
-        url: '/user/queryDownload',
+        url: '/sample/user/queryDownload',
         params: {pageNum}
     });
 };
@@ -60,7 +60,7 @@ export function queryDownloadUsers(pageNum) {
  */
 export function downloadPicture(attachmentId) {
     return request({
-        url: '/user/download/' + attachmentId,
+        url: '/sample/user/download/' + attachmentId,
         responseType: 'blob'
     });
 };
