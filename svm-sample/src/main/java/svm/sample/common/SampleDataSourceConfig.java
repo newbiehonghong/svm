@@ -20,7 +20,7 @@ public class SampleDataSourceConfig {
 
     @Bean
     @ConfigurationProperties(prefix = "mybatis.configuration")
-    public org.apache.ibatis.session.Configuration mybatisConfiguration() {
+    public org.apache.ibatis.session.Configuration sampleConfiguration() {
         return new org.apache.ibatis.session.Configuration();
     }
 
@@ -31,11 +31,11 @@ public class SampleDataSourceConfig {
     }
 
     @Bean(name = "sampleSqlSessionFactory")
-    public SqlSessionFactory sampleSqlSessionFactory(@Qualifier("sampleDataSource") DataSource dataSource, org.apache.ibatis.session.Configuration mybatisConfiguration) throws Exception {
+    public SqlSessionFactory sampleSqlSessionFactory(@Qualifier("sampleDataSource") DataSource dataSource, org.apache.ibatis.session.Configuration sampleConfiguration) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         //由于使用了多数据源，只加载配置文件的一部分，导致mybatis的配置没有被自动加载，此处用程序加载
-        bean.setConfiguration(mybatisConfiguration);
+        bean.setConfiguration(sampleConfiguration);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/sample/*.xml"));
         return bean.getObject();
     }

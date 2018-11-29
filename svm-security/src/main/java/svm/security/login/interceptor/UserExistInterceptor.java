@@ -6,6 +6,7 @@ import svm.security.entity.User;
 import svm.security.interceptor.BaseInterceptor;
 import svm.security.login.LoginConstants;
 import svm.security.service.UserService;
+import svm.security.util.MD5Digest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,12 @@ public class UserExistInterceptor extends BaseInterceptor {
             return false;
         }
 
+        String password = request.getParameter(LoginConstants.PARAMETER_PASSWORD);
+        password = MD5Digest.digest(password);
+        if(!password.equals(user.getPassword())) {
+            writeMessage(response, "无效的用户名或密码");
+            return false;
+        }
         request.setAttribute(LoginConstants.ATTRIBUTE_USER, user);
         return true;
     }

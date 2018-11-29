@@ -7,7 +7,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import svm.security.interceptor.CorsInterceptor;
 import svm.security.interceptor.PermissionInterceptor;
 import svm.security.interceptor.TokenInterceptor;
-import svm.security.login.interceptor.ComparePasswordInterceptor;
 import svm.security.login.interceptor.UserExistInterceptor;
 
 @Configuration
@@ -20,8 +19,6 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     @Autowired
     private UserExistInterceptor userExistInterceptor;
 
-    @Autowired
-    private ComparePasswordInterceptor comparePasswordInterceptor;
     //-->
 
     //<!--组件拦截器
@@ -40,7 +37,6 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
         //登录拦截器
         registry.addInterceptor(userExistInterceptor).addPathPatterns("/login");
-        registry.addInterceptor(comparePasswordInterceptor).addPathPatterns("/login");
 
         //组件拦截器
         registry.addInterceptor(tokenInterceptor)

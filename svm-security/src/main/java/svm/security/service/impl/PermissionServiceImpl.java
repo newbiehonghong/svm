@@ -32,10 +32,8 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public UserSession getUserSession(String token) {
-        String name = token;//TODO
-
-        User user = userService.getUserByName(name);
+    public UserSession getUserSession(Long userId) {
+        User user = userService.getUser(userId);
         if(user == null) {
             return null;
         }

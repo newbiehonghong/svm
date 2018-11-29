@@ -21,7 +21,7 @@ public class SecurityDataSourceConfig {
 
     @Bean
     @ConfigurationProperties(prefix = "mybatis.configuration")
-    public org.apache.ibatis.session.Configuration mybatisConfiguration() {
+    public org.apache.ibatis.session.Configuration securityConfiguration() {
         return new org.apache.ibatis.session.Configuration();
     }
 
@@ -34,10 +34,10 @@ public class SecurityDataSourceConfig {
 
     @Bean(name = "securitySqlSessionFactory")
     @Primary
-    public SqlSessionFactory securitySqlSessionFactory(@Qualifier("securityDataSource") DataSource dataSource, org.apache.ibatis.session.Configuration mybatisConfiguration) throws Exception {
+    public SqlSessionFactory securitySqlSessionFactory(@Qualifier("securityDataSource") DataSource dataSource, org.apache.ibatis.session.Configuration securityConfiguration) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setConfiguration(mybatisConfiguration);
+        bean.setConfiguration(securityConfiguration);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/security/*.xml"));
         return bean.getObject();
     }

@@ -10,5 +10,5 @@ public interface PermissionService {
 
     List<String> getPagePermissionList(Long userId);
 
-    UserSession getUserSession(String token);
+    UserSession getUserSession(Long userId);
 }
