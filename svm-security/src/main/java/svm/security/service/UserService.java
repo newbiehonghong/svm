@@ -1,5 +1,6 @@
 package svm.security.service;
 
+import com.github.pagehelper.PageInfo;
 import svm.security.entity.User;
 
 public interface UserService {
@@ -12,4 +13,6 @@ public interface UserService {
     User getUser(Long id);
 
     User getUserByName(String name);
+
+    PageInfo<User> queryAllUsers(int pageNum, int pageSize);
 }

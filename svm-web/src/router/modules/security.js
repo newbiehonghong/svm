@@ -1,8 +1,8 @@
 export default [
     {
-        // 权限页面
-        path: '/permission',
-        component: resolve => require(['@/views/sample/Permission.vue'], resolve),
-        meta: { title: '权限测试', permissions: ['sample/p_admin'] }
+        // 用户管理
+        path: '/security_user',
+        component: resolve => require(['@/views/security/UserManage.vue'], resolve),
+        meta: { title: '用户管理', permissions: ['security/p_admin'] }
     }
 ];

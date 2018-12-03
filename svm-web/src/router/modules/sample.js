@@ -2,12 +2,12 @@ export default [
     {
         path: '/form',
         component: resolve => require(['@/views/sample/BaseForm.vue'], resolve),
-        meta: { title: '基本表单', permissions: ['sample/p_test'] }
+        meta: { title: '基本表单' }
     },
     {
         path: '/table',
         component: resolve => require(['@/views/sample/BaseTable.vue'], resolve),
-        meta: { title: '基础表格', permissions: ['sample/p_test'] }
+        meta: { title: '基础表格' }
     },
     {
         path: '/tabs',

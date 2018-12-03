@@ -79,8 +79,20 @@
                     },
                     {
                         icon: 'el-icon-star-off',
-                        index: '403',
-                        title: '权限管理'
+                        index: '2',
+                        title: '权限管理',
+                        subs: [
+                            {
+                                icon: 'el-icon-star-off',
+                                index: 'security_user',
+                                title: '用户管理'
+                            },
+                            {
+                                icon: 'el-icon-star-off',
+                                index: '404',
+                                title: '角色管理'
+                            }
+                        ]
                     }
                 ]
             }

@@ -11,7 +11,7 @@ public interface SampleUserMapper {
 
     void update(UserDO user);
 
-    void delete(Long id);
+    void delete(Long[] ids);
 
     UserDO getUser(Long id);
 

@@ -42,8 +42,8 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         registry.addInterceptor(tokenInterceptor)
                 .excludePathPatterns("/static/*").excludePathPatterns("/login")
                 .addPathPatterns("/**");
-        registry.addInterceptor(permissionInterceptor)
-                .excludePathPatterns("/static/*").excludePathPatterns("/login")
-                .addPathPatterns("/**");
+//        registry.addInterceptor(permissionInterceptor)
+//                .excludePathPatterns("/static/*").excludePathPatterns("/login")
+//                .addPathPatterns("/**");
     }
 }

@@ -21,17 +21,18 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping(value = "/sample/user")
 @RequiredPermission("sample/user/query")
-public class UserController {
+public class SampleUserController {
 
     @Autowired
     private UserService userService;
 
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
+    private Logger logger = LoggerFactory.getLogger(SampleUserController.class);
 
     @PostMapping("/save")
+    @ResponseBody
     @RequiredPermission("sample/user/add")
-    public void saveUser(@RequestBody UserDO user) {
-        userService.saveUser(user);
+    public Long saveUser(@RequestBody UserDO user) {
+        return userService.saveUser(user);
     }
 
     @PostMapping("/update")
@@ -40,10 +41,16 @@ public class UserController {
         userService.updateUser(user);
     }
 
-    @PostMapping("/delete/{id}")
+    @PostMapping("/delete/{ids}")
     @RequiredPermission("sample/user/delete")
-    public void deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    public void deleteUser(@PathVariable String ids) {
+        String[] strIds = ids.split(",");
+        int count = strIds.length;
+        Long[] idArray = new Long[count];
+        for(int i = 0; i < count; i++) {
+            idArray[i] = Long.parseLong(strIds[i]);
+        }
+        userService.deleteUsers(idArray);
     }
 
     @PostMapping("/get/{id}")

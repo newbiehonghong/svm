@@ -64,4 +64,4 @@ logging:
 app:
   allowedCors: http://localhost:8080
   #超时时间，分钟
-  sessionTimeout: 30
+  sessionTimeout: -1

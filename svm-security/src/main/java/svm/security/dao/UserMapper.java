@@ -2,6 +2,8 @@ package svm.security.dao;
 
 import svm.security.entity.User;
 
+import java.util.List;
+
 public interface UserMapper {
     void save(User user);
 
@@ -12,4 +14,6 @@ public interface UserMapper {
     User get(Long id);
 
     User getUserByName(String name);
+
+    List<User> queryAllUsers();
 }

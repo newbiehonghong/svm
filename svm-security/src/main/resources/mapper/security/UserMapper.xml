@@ -45,4 +45,9 @@
         from sys_user
         where name = #{name,jdbcType=VARCHAR}
     </select>
+    <select id="queryAllUsers" resultType="svm.security.entity.User" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_user
+    </select>
 </mapper>

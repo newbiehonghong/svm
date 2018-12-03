@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Long id) {
-        sampleUserMapper.delete(id);
+    public void deleteUsers(Long[] ids) {
+        sampleUserMapper.delete(ids);
     }
 
     @Override

@@ -1,15 +1,18 @@
 <template>
     <div>
         <div class="container">
-            <el-table :data="data" border style="width: 100%" ref="userTable">
+            <div class="handle-box">
+                <el-button class="button" @click="handleCreate" type="primary" icon="el-icon-edit">新增</el-button>
+                <el-button class="button" @click="handleDelete" icon="el-icon-delete">删除</el-button>
+            </div>
+            <el-table :data="data" border style="width: 100%" ref="userTable" @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55"></el-table-column>
                 <el-table-column prop="birthday" label="出生日期" sortable width="150"></el-table-column>
                 <el-table-column prop="name" label="姓名" width="150"></el-table-column>
                 <el-table-column prop="province" label="省" :formatter="decodeProvince" width="120"></el-table-column>
-                <el-table-column label="操作" width="180">
+                <el-table-column label="操作" width="80">
                     <template slot-scope="scope">
                         <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -43,21 +46,12 @@
                 <el-button @click="editVisible = false">取 消</el-button>
             </span>
         </el-dialog>
-
-        <!-- 删除提示框 -->
-        <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-            <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-            <span slot="footer" class="dialog-footer">
-                <el-button type="primary" @click="deleteRow">确 定</el-button>
-                <el-button @click="delVisible = false">取 消</el-button>
-            </span>
-        </el-dialog>
     </div>
 </template>
 
 <script>
     import dict from "@/dict";
-    import { queryAllUsers, updateUser, deleteUser } from '@/api/sample';
+    import { queryAllUsers, saveUser, updateUser, deleteUser } from '@/api/sample';
 
     export default {
         name: 'BaseTable',
@@ -67,10 +61,10 @@
                 currentPage: 1,
                 currentRow: {},
                 currentRowIndex: -1,
+                multipleSelection: [],
                 pageSize: 10,
                 totalRecords: 0,
                 editVisible: false,
-                delVisible: false,
                 sample_province: dict.sample_province
             }
         },
@@ -93,39 +87,75 @@
                 var item = this.sample_province.find(element => element.value == value);
                 return item && item.label || value;
             },
+            resetCurrentRow() {
+                this.currentRow = {
+                    name: null,
+                    birthday: null,
+                    province: '1',
+                    city: '1',
+                    salary: null,
+                    gender: '1',
+                    memo: null
+                };
+            },
+            handleCreate() {
+                this.resetCurrentRow();
+                this.editVisible = true;
+            },
             handleEdit(index, row) {
                 this.currentRowIndex = index;
-                this.currentRow = row;
+                this.currentRow = Object.assign({}, row);
                 this.editVisible = true;
             },
             handleDelete(index, row) {
-                this.currentRowIndex = index;
-                this.currentRow = row;
-                this.delVisible = true;
+                const count = this.multipleSelection.length;
+                if(count == 0) {
+                    this.$alert('请选择要删除的记录！', '提示', {
+                        confirmButtonText: '确定'
+                    });
+                    return;
+                }
+
+                this.$confirm('删除不可恢复，是否确定删除？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    let ids = '';
+                    for (let i = 0; i < count; i++) {
+                        if(i > 0) {
+                            ids += ',';
+                        }
+                        ids += this.multipleSelection[i].id;
+                    }
+
+                    deleteUser(ids).then((res) => {
+                        for (let i = count - 1; i >= 0; i--) {
+                            this.data.splice(i, 1);
+                        }   
+                        this.multipleSelection = [];
+                        this.$refs.userTable.clearSelection();
+                    })
+                });
             },
-            // 保存编辑
             saveEdit() {
-                updateUser(this.currentRow).then((res) => {
-                    this.$set(this.data, this.idx, this.currentRow);
-                    this.editVisible = false;
-                })
+                if(this.currentRow.id) {
+                    updateUser(this.currentRow).then((res) => {
+                        this.$set(this.data, this.currentRowIndex, this.currentRow);
+                        this.editVisible = false;
+                    });
+                } else {
+                    saveUser(this.currentRow).then((res) => {
+                        this.currentRow.id = res.data;//设置主键
+                        this.data.unshift(this.currentRow);
+                        this.editVisible = false;
+                    });
+                }
             },
-            // 确定删除
-            deleteRow() {
-                var id = this.currentRow.id;
-                deleteUser(id).then((res) => {
-                    this.data.splice(this.idx, 1);
-                    this.delVisible = false;
-                })
-            }
+            handleSelectionChange(val) {
+                this.multipleSelection = val;
+            },
         }
     }
 
 </script>
-
-<style scoped>
-    .del-dialog-cnt {
-        font-size: 16px;
-        text-align: center
-    }
-</style>

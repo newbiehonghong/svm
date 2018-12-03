@@ -94,6 +94,15 @@ a {
     opacity: 0;
 }
 
+.handle-box {
+    text-align: right;
+    padding-bottom: 10px;
+}
+.handle-box .button {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 /*BaseForm*/
 
 .form-box {
