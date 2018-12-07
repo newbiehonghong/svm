@@ -1,12 +1,19 @@
 <template>
     <div>
         <div class="container">
+            <div class="filter-box">
+                <el-select v-model="filters.type" class="filter-item" clearable style="width:150px" placeholder="权限项类型">
+                    <el-option v-for="item in permission_type" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                </el-select>
+                <el-button class="button" icon="el-icon-search" @click="doFilter">过滤</el-button>
+            </div>
             <div class="handle-box">
                 <el-button class="button" @click="doCreate" type="primary" icon="el-icon-edit">新增</el-button>
             </div>
-            <el-table :data="data" border style="width: 100%" ref="userTable">
-                <el-table-column prop="name" label="账号" width="150"></el-table-column>
-                <el-table-column prop="nickname" label="姓名" width="150"></el-table-column>
+            <el-table :data="data" border style="width: 100%" ref="permissionTable">
+                <el-table-column prop="id" label="权限项标识" width="200"></el-table-column>
+                <el-table-column prop="name" label="权限项名称" width="300"></el-table-column>
+                <el-table-column prop="type" label="权限项类型" :formatter="decodeType" width="100"></el-table-column>
                 <el-table-column label="操作" width="260">
                     <template slot-scope="scope">
                         <el-button size="small" @click="doEdit(scope.$index, scope.row)">编辑</el-button>
@@ -20,16 +27,18 @@
             </div>
         </div>
 
-        <el-dialog title="用户信息" :visible.sync="editVisible" width="30%">
-            <el-form ref="userForm" :model="currentRow" label-width="80px">
-                <el-form-item label="账号">
+        <el-dialog title="权限项信息" :visible.sync="editVisible" width="40%">
+            <el-form ref="permissionForm" :model="currentRow" label-width="100px">
+                <el-form-item label="权限项标识" v-if="isCreate">
+                    <el-input v-model="currentRow.id"></el-input>
+                </el-form-item>
+                <el-form-item label="权限项名称">
                     <el-input v-model="currentRow.name"></el-input>
                 </el-form-item>
-                <el-form-item label="姓名">
-                    <el-input v-model="currentRow.nickname"></el-input>
-                </el-form-item>
-                <el-form-item label="密码" v-if="isCreate">
-                    <el-input type="password" v-model="currentRow.password"></el-input>
+                <el-form-item label="权限项类型">
+                    <el-select v-model="currentRow.type" clearable placeholder="请选择">
+                        <el-option v-for="item in permission_type" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    </el-select>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -50,7 +59,8 @@
 </template>
 
 <script>
-    import { queryAllUsers, saveUser, updateUser, deleteUser, queryAllRoles, queryRolesByUserId, saveUserRoles } from '@/api/security';
+    import dict from "@/dict/security";
+    import { queryPermissions, savePermission, updatePermission, deletePermission, queryAllRoles, queryRolesByPermissionId, savePermissionRoles } from '@/api/security';
 
     export default {
         data() {
@@ -65,7 +75,11 @@
                 isCreate: false,
                 roleVisible: false,
                 roles: [],
-                selectedRoles: []
+                selectedRoles: [],
+                filters: {
+                    type: ''
+                },
+                permission_type: dict.security_permission_type
             }
         },
         created() {
@@ -77,16 +91,24 @@
                 this.getData();
             },
             getData() {
-                queryAllUsers(this.currentPage, this.pageSize).then((res) => {
+                queryPermissions(this.filters.type, this.currentPage, this.pageSize).then((res) => {
                     this.data = res.data.list;
                     this.totalRecords = res.data.pages * this.pageSize;
                 })
             },
+            doFilter() {
+                this.doCurrentChange(1);
+            },
+            decodeType(row, column) {
+                var value = row.type;
+                var item = this.permission_type.find(element => element.value == value);
+                return item && item.label || value;
+            },
             resetCurrentRow() {
                 this.currentRow = {
+                    "id": null,
                     "name": null,
-                    "nickname": null,
-                    "password": null
+                    "type": "service"
                 };
             },
             doCreate() {
@@ -106,21 +128,19 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    deleteUser(row.id).then((res) => {
+                    deletePermission(row.id).then((res) => {
                         this.data.splice(index, 1);
                     })
                 });
             },
             saveEdit() {
                 if(this.isCreate) {
-                    saveUser(this.currentRow).then((res) => {
-                        console.log(res.data)
-                        this.currentRow.id = res.data; 
+                    savePermission(this.currentRow).then((res) => {
                         this.data.unshift(this.currentRow);
                         this.editVisible = false;
                     });
                 } else {
-                    updateUser(this.currentRow).then((res) => {
+                    updatePermission(this.currentRow).then((res) => {
                         this.$set(this.data, this.currentRowIndex, this.currentRow);
                         this.editVisible = false;
                     });
@@ -132,7 +152,7 @@
                 }
                 this.currentRow = row;
 
-                queryRolesByUserId(row.id).then((res) => {
+                queryRolesByPermissionId(row.id).then((res) => {
                     this.selectedRoles.splice(0, this.selectedRoles.length);
                     res.data.forEach(id => this.selectedRoles.push(id));
                 });
@@ -147,7 +167,7 @@
                 });
             },
             saveRole() {
-                saveUserRoles(this.currentRow.id, this.selectedRoles).then((res) => {
+                savePermissionRoles(this.currentRow.id, this.selectedRoles).then((res) => {
                     this.roleVisible = false;
                 });
             }

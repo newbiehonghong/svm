@@ -5,7 +5,7 @@
     <resultMap id="BaseResultMap" type="svm.security.entity.Role">
         <id column="role_id" jdbcType="VARCHAR" property="id" />
     </resultMap>
-    <sql id="Base_Column_List">
+    <sql id="BaseColumnList">
         role_id, name
     </sql>
 
@@ -23,9 +23,12 @@
         where role_id = #{id,jdbcType=VARCHAR}
     </delete>
     <select id="get" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
+        select <include refid="BaseColumnList" />
         from sys_role
         where role_id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="queryAllRoles" resultMap="BaseResultMap">
+        select <include refid="BaseColumnList" />
+        from sys_role
     </select>
 </mapper>

@@ -5,13 +5,13 @@
     <resultMap id="BaseResultMap" type="svm.security.entity.User">
         <id column="user_id" jdbcType="NUMERIC" property="id" />
     </resultMap>
-    <sql id="Base_Column_List">
+    <sql id="BaseColumnList">
         user_id, name, nickname, password, create_time
     </sql>
 
     <insert id="save" parameterType="svm.security.entity.User">
         insert into sys_user (
-            <include refid="Base_Column_List" />
+            <include refid="BaseColumnList" />
         )
         values (
             #{id,jdbcType=NUMERIC},
@@ -35,19 +35,17 @@
     </delete>
 
     <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
+        select <include refid="BaseColumnList" />
         from sys_user
         where user_id = #{id,jdbcType=NUMERIC}
     </select>
     <select id="getUserByName" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List" />
+        select <include refid="BaseColumnList" />
         from sys_user
         where name = #{name,jdbcType=VARCHAR}
     </select>
-    <select id="queryAllUsers" resultType="svm.security.entity.User" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
+    <select id="queryAllUsers" resultMap="BaseResultMap">
+        select <include refid="BaseColumnList" />
         from sys_user
     </select>
 </mapper>

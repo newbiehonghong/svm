@@ -40,7 +40,7 @@
 </template>
 
 <script>
-    import dict from "@/dict";
+    import dict from "@/dict/sample";
     import { saveUser } from '@/api/sample';
 
     export default {

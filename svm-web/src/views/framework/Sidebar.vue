@@ -89,8 +89,13 @@
                             },
                             {
                                 icon: 'el-icon-star-off',
-                                index: '404',
+                                index: 'security_role',
                                 title: '角色管理'
+                            },
+                            {
+                                icon: 'el-icon-star-off',
+                                index: 'security_permission',
+                                title: '权限项管理'
                             }
                         ]
                     }

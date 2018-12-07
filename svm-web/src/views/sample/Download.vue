@@ -30,7 +30,7 @@
 </template>
 
 <script>
-    import dict from "@/dict";
+    import dict from "@/dict/sample";
     import { apiURL, getToken } from '@/utils/request';
     import { queryDownloadUsers, downloadPicture } from '@/api/sample';
 

@@ -14,27 +14,27 @@ insert into sys_user_role_map(user_id, role_id)
  values (2, 'test');
 
 insert into sys_permission(permission_id, name, type)
- values ('security/user/query', '用户查询', 'service');
+ values ('security_user_query', '用户查询', 'service');
 insert into sys_permission(permission_id, name, type)
- values ('security/user/add', '用户新增及修改', 'service');
+ values ('security_user_add', '用户新增及修改', 'service');
 insert into sys_permission(permission_id, name, type)
- values ('security/user/delete', '用户删除', 'service');
+ values ('security_user_delete', '用户删除', 'service');
 insert into sys_permission(permission_id, name, type)
- values ('security/p_admin', '管理员用户权限', 'page');
+ values ('security_p_admin', '管理员用户权限', 'page');
 insert into sys_permission(permission_id, name, type)
- values ('security/p_test', '测试用户权限', 'page');
+ values ('security_p_test', '测试用户权限', 'page');
  
 insert into sys_role_permission_map(role_id, permission_id)
- values ('admin', 'security/user/query');
+ values ('admin', 'security_user_query');
 insert into sys_role_permission_map(role_id, permission_id)
- values ('admin', 'security/user/add');
+ values ('admin', 'security_user_add');
 insert into sys_role_permission_map(role_id, permission_id)
- values ('admin', 'security/user/delete');
+ values ('admin', 'security_user_delete');
 insert into sys_role_permission_map(role_id, permission_id)
- values ('admin', 'security/p_admin');
+ values ('admin', 'security_p_admin');
  insert into sys_role_permission_map(role_id, permission_id)
- values ('test', 'security/user/query');
+ values ('test', 'security_user_query');
 insert into sys_role_permission_map(role_id, permission_id)
- values ('test', 'security/user/add');
+ values ('test', 'security_user_add');
 insert into sys_role_permission_map(role_id, permission_id)
- values ('test', 'security/p_test');
+ values ('test', 'security_p_test');

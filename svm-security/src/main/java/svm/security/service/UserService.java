@@ -3,6 +3,8 @@ package svm.security.service;
 import com.github.pagehelper.PageInfo;
 import svm.security.entity.User;
 
+import java.util.List;
+
 public interface UserService {
     Long saveUser(User user);
 
@@ -15,4 +17,8 @@ public interface UserService {
     User getUserByName(String name);
 
     PageInfo<User> queryAllUsers(int pageNum, int pageSize);
+
+    List<Long> queryByRoleId(String roleId);
+
+    void saveRolesMap(Long userId, String[] roleIds);
 }

@@ -4,8 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import svm.common.generator.IGenerator;
 import svm.security.dao.UserMapper;
+import svm.security.dao.UserRoleMapper;
 import svm.security.entity.User;
 import svm.security.service.UserService;
 import svm.security.util.MD5Digest;
@@ -17,6 +19,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserRoleMapper userRoleMapper;
 
     @Autowired
     private IGenerator iGenerator;
@@ -56,5 +61,19 @@ public class UserServiceImpl implements UserService {
         PageHelper.startPage(pageNum, pageSize);
         List<User> users = userMapper.queryAllUsers();
         return new PageInfo(users);
+    }
+
+    @Override
+    public List<Long> queryByRoleId(String roleId) {
+        return userRoleMapper.queryUsersByRoleId(roleId);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void saveRolesMap(Long userId, String[] roleIds) {
+        userRoleMapper.deleteByUserId(userId);
+        if(roleIds.length > 0) {
+            userRoleMapper.saveUserRoles(userId, roleIds);
+        }
     }
 }

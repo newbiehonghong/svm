@@ -95,10 +95,18 @@ a {
 }
 
 .handle-box {
-    text-align: right;
     padding-bottom: 10px;
+    float: right;
 }
 .handle-box .button {
+    display: inline-block;
+    vertical-align: middle;
+}
+.filter-box {
+    display: inline-block;
+    padding-bottom: 10px;
+}
+.filter-box .filter-item {
     display: inline-block;
     vertical-align: middle;
 }

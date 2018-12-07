@@ -1,7 +1,7 @@
 package svm.security.dao;
 
+import org.apache.ibatis.annotations.Param;
 import svm.security.entity.Permission;
-import svm.security.entity.User;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface PermissionMapper {
 
     void delete(String id);
 
-    User get(String id);
+    List<Permission> queryPermissions(@Param("type") String type);
 
     List<String> getServicePermissions(Long userId);
 

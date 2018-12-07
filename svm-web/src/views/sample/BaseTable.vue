@@ -50,7 +50,7 @@
 </template>
 
 <script>
-    import dict from "@/dict";
+    import dict from "@/dict/sample";
     import { queryAllUsers, saveUser, updateUser, deleteUser } from '@/api/sample';
 
     export default {

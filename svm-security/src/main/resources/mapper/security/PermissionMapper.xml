@@ -5,12 +5,12 @@
     <resultMap id="BaseResultMap" type="svm.security.entity.Permission">
         <id column="permission_id" jdbcType="VARCHAR" property="id" />
     </resultMap>
-    <sql id="Base_Column_List">
+    <sql id="BaseColumnList">
         permission_id, name, type
     </sql>
 
     <insert id="save" parameterType="svm.security.entity.Permission">
-        insert into sys_permission (<include refid="Base_Column_List" />)
+        insert into sys_permission (<include refid="BaseColumnList" />)
         values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
     </insert>
     <update id="update" parameterType="svm.security.entity.Permission">
@@ -22,12 +22,13 @@
         delete from sys_permission
         where permission_id = #{id,jdbcType=VARCHAR}
     </delete>
-    <select id="get" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
+    <select id="queryPermissions" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select <include refid="BaseColumnList" />
         from sys_permission
-        where permission_id = #{id,jdbcType=VARCHAR}
+        <if test="type != null and type != ''"> where type=#{type}</if>
+         order by type, permission_id
     </select>
+
     <select id="getServicePermissions" parameterType="java.lang.Long" resultType="java.lang.String">
         select distinct a.permission_id
         from sys_permission a, sys_role_permission_map b, sys_user_role_map c
