@@ -18,14 +18,20 @@ exports.cssLoaders = function (options) {
   const cssLoader = {
     loader: 'css-loader',
     options: {
-      sourceMap: options.sourceMap
+      sourceMap: options.sourceMap,
+      alias:{
+        'assets': path.join(__dirname, '..', 'src/assets')
+      }
     }
   }
 
   const postcssLoader = {
     loader: 'postcss-loader',
     options: {
-      sourceMap: options.sourceMap
+      sourceMap: options.sourceMap,
+      alias:{
+        'assets': path.join(__dirname, '..', 'src/assets')
+      }
     }
   }
 

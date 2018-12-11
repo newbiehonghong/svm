@@ -1,33 +1,33 @@
 export default [
     {
         path: '/form',
-        component: resolve => require(['@/views/sample/BaseForm.vue'], resolve),
+        component: () => import(/* webpackChunkName: "sample" */'@/views/sample/BaseForm.vue'),
         meta: { title: '基本表单' }
     },
     {
         path: '/table',
-        component: resolve => require(['@/views/sample/BaseTable.vue'], resolve),
+        component: () => import(/* webpackChunkName: "sample" */'@/views/sample/BaseTable.vue'),
         meta: { title: '基础表格' }
     },
     {
         path: '/tabs',
-        component: resolve => require(['@/views/sample/Tabs.vue'], resolve),
+        component: () => import(/* webpackChunkName: "sample" */'@/views/sample/Tabs.vue'),
         meta: { title: 'tab选项卡' }
     },
     {
         path: '/upload',
-        component: resolve => require(['@/views/sample/Upload.vue'], resolve),
+        component: () => import(/* webpackChunkName: "sample" */'@/views/sample/Upload.vue'),
         meta: { title: '文件上传' }   
     },
     {
         path: '/download',
-        component: resolve => require(['@/views/sample/Download.vue'], resolve),
+        component: () => import(/* webpackChunkName: "sample" */'@/views/sample/Download.vue'),
         meta: { title: '文件下载' }   
     },
     {
         // 拖拽列表组件
         path: '/drag',
-        component: resolve => require(['@/views/sample/DragList.vue'], resolve),
+        component: () => import(/* webpackChunkName: "sample" */'@/views/sample/DragList.vue'),
         meta: { title: '拖拽列表' }
     }
 ];

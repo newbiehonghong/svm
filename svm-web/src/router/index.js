@@ -34,15 +34,15 @@ export function filterAsyncRouter(routerMap, permissions) {
 const constantRouterMap = [
     {
         path: '/login',
-        component: resolve => require(['@/views/login/Login.vue'], resolve)
+        component: () => import(/* webpackChunkName: "framework" */'@/views/login/Login.vue')
     },
     {
         path: '/403',
-        component: resolve => require(['@/views/errorpage/403.vue'], resolve)
+        component: () => import(/* webpackChunkName: "framework" */'@/views/errorpage/403.vue')
     },
     {
         path: '/404',
-        component: resolve => require(['@/views/errorpage/404.vue'], resolve)
+        component: () => import(/* webpackChunkName: "framework" */'@/views/errorpage/404.vue')
     }
 ];
 
@@ -60,11 +60,11 @@ export const asyncRouterMap = [
     },
     {
         path: '/',
-        component: resolve => require(['@/views/framework/Home.vue'], resolve),
+        component: () => import(/* webpackChunkName: "framework" */'@/views/framework/Home.vue'),
         children: [
             {
                 path: '/dashboard',
-                component: resolve => require(['@/views/framework/Dashboard.vue'], resolve),
+                component: () => import(/* webpackChunkName: "framework" */'@/views/framework/Dashboard.vue'),
                 meta: { title: '系统首页' }
             },
             ...moduleRoutes

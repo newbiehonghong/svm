@@ -5,8 +5,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';    // 默认主题
-// import '../static/css/theme-green/index.css';       // 浅绿色主题
+import 'element-ui/lib/theme-chalk/index.css';
 import "babel-polyfill";
 
 import store from './store';
@@ -40,7 +39,7 @@ router.beforeEach((to, from, next) => {
 });
 
 window.addEventListener('unhandledrejection', event => {
-    console.log(event.reason);
+    //console.log(event.reason);
 });
 
 new Vue({
