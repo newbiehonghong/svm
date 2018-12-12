@@ -5,9 +5,9 @@
         <div class="content-box" :class="{'content-collapse':collapse}">
             <v-tags></v-tags>
             <div class="content">
-                    <keep-alive :include="tagsList">
-                        <router-view></router-view>
-                    </keep-alive>
+                <keep-alive :include="tagsList">
+                    <router-view></router-view>
+                </keep-alive>
             </div>
         </div>
     </div>
@@ -19,28 +19,33 @@
     import vTags from './Tags.vue';
     import bus from '@/bus';
     export default {
-        data(){
+        data() {
             return {
                 tagsList: [],
                 collapse: false
             }
         },
-        components:{
+        components: {
             vHead, vSidebar, vTags
         },
-        created(){
+        created() {
             bus.$on('collapse', msg => {
                 this.collapse = msg;
-            })
+            });
 
             // 只有在标签页列表里的页面才使用keep-alive，即关闭标签之后就不保存到内存中了。
-            bus.$on('tags', msg => {
-                let arr = [];
-                for(let i = 0, len = msg.length; i < len; i ++){
-                    msg[i].name && arr.push(msg[i].name);
+            // 注意： keep-alive要求组件必须有name
+            bus.$on('createTag', name => {
+                this.tagsList.push(name);
+            });
+            bus.$on('removeTag', name => {
+                for(let i = this.tagsList.length - 1; i >= 0; i--) {
+                    if(this.tagsList[i] == name) {
+                        this.tagsList.splice(i, 1);
+                        return;
+                    }
                 }
-                this.tagsList = arr;
-            })
+            });
         }
     }
 </script>

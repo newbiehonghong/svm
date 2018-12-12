@@ -29,21 +29,28 @@
                 const item = this.tagsList[index] ? this.tagsList[index] : this.tagsList[index - 1];
                 if (item) {
                     delItem.path === this.$route.fullPath && this.$router.push(item.path);
-                }else{
+                } else {
                     this.$router.push('/');
                 }
+
+                const cmpName = delItem.name;
+                cmpName && bus.$emit('removeTag', cmpName);
             },
             // 设置标签
-            setTags(route){
+            setTags(route) {
                 const isExist = this.tagsList.some(item => {
                     return item.path === route.fullPath;
-                })
-                !isExist && this.tagsList.push({
-                    title: route.meta.title,
-                    path: route.fullPath,
-                    name: route.matched[1].components.default.name
-                })
-                bus.$emit('tags', this.tagsList);
+                });
+
+                const cmpName = route.matched[1].components.default.name;
+                if(!isExist) {
+                    this.tagsList.push({
+                        title: route.meta.title,
+                        path: route.fullPath,
+                        name: cmpName
+                    });
+                    cmpName && bus.$emit('createTag', cmpName);
+                };  
             }
         },
         computed: {
@@ -56,13 +63,11 @@
                 this.setTags(newValue);
             }
         },
-        created(){
+        created() {
             this.setTags(this.$route);
         }
     }
-
 </script>
-
 
 <style>
     .tags {
@@ -113,6 +118,7 @@
         text-overflow: ellipsis;
         margin-right: 5px;
         color: #666;
+        outline: none;
     }
 
     .tags-li.active .tags-li-title {

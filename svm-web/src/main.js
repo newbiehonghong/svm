@@ -5,7 +5,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+//import 'element-ui/lib/theme-chalk/index.css'; //在index.html中静态引入css文件
 import "babel-polyfill";
 
 import store from './store';

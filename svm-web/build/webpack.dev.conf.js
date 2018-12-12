@@ -1,9 +1,11 @@
 'use strict'
+const path = require('path')
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('../config')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
@@ -47,9 +49,22 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html',
+      template: 'index-dev.html',
       inject: true
-    })
+    }),
+    // copy element-ui css\fonts files
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../node_modules/element-ui/lib/theme-chalk/index.css'),
+        to: config.build.assetsSubDirectory
+      }
+    ]),
+    new CopyWebpackPlugin([
+        {
+          from: path.resolve(__dirname, '../node_modules/element-ui/lib/theme-chalk/fonts'),
+          to: config.build.assetsSubDirectory + '/fonts'
+        }
+      ])
   ]
 })
 

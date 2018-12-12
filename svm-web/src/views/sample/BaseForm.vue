@@ -44,7 +44,7 @@
     import { saveUser } from '@/api/sample';
 
     export default {
-        name: 'BaseForm',
+        name: 'BaseForm', //keep-alive要求组件必须有name
         data: function() {
             return {
                 user: {

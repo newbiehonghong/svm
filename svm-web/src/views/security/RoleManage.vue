@@ -60,6 +60,7 @@
     import { queryAllRoles, saveRole, updateRole, deleteRole, queryAllUsers, queryUsersByRoleId, saveRoleUsers, queryPermissions, queryPermissionsByRoleId, saveRolePermissions } from '@/api/security';
 
     export default {
+        name: 'RoleManage',
         data() {
             return {
                 data: [],

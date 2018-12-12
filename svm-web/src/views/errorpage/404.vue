@@ -1,5 +1,5 @@
 <template>
-    <cmpError v-bind:errorCode="errorCode" v-bind:errorDesc="errorDesc"></cmpError>
+    <cmp-error :errorCode="errorCode" :errorDesc="errorDesc"></cmp-error>
 </template>
 
 <script>

@@ -63,6 +63,7 @@
     import { queryPermissions, savePermission, updatePermission, deletePermission, queryAllRoles, queryRolesByPermissionId, savePermissionRoles } from '@/api/security';
 
     export default {
+        name: 'PermissionManage',
         data() {
             return {
                 data: [],

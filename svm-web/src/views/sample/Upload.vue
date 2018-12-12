@@ -36,7 +36,7 @@
     import { saveUser } from '@/api/sample';
 
     export default {
-        name: 'upload',
+        name: 'Upload',
         data: function() {
             return {
                 user: {
