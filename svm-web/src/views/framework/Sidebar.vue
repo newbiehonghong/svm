@@ -1,7 +1,6 @@
 <template>
     <div class="sidebar">
-        <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#324157"
-            text-color="#bfcbd9" active-text-color="#20a0ff" unique-opened router>
+        <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" unique-opened router>
             <template v-for="item in menus">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index" :key="item.index">
@@ -146,7 +145,7 @@
 </script>
 
 <style scoped>
-    .sidebar{
+    .sidebar {
         display: block;
         position: absolute;
         left: 0;
@@ -154,10 +153,10 @@
         bottom:0;
         overflow-y: scroll;
     }
-    .sidebar::-webkit-scrollbar{
+    .sidebar::-webkit-scrollbar {
         width: 0;
     }
-    .sidebar-el-menu:not(.el-menu--collapse){
+    .sidebar-el-menu:not(.el-menu--collapse) {
         width: 250px;
     }
     .sidebar > ul {

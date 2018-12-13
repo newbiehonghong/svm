@@ -16,9 +16,9 @@
                 <el-table-column prop="type" label="权限项类型" :formatter="decodeType" width="100"></el-table-column>
                 <el-table-column label="操作" width="260">
                     <template slot-scope="scope">
-                        <el-button size="small" @click="doEdit(scope.$index, scope.row)">编辑</el-button>
-                        <el-button size="small" @click="doRole(scope.$index, scope.row)">分配角色</el-button>
-                        <el-button size="small" type="danger" @click="doDelete(scope.$index, scope.row)">删除</el-button>
+                        <el-button size="text" icon="el-icon-edit" @click="doEdit(scope.$index, scope.row)">编辑</el-button>
+                        <el-button size="text" @click="doRole(scope.$index, scope.row)">分配角色</el-button>
+                        <el-button size="text" icon="el-icon-delete" @click="doDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>

@@ -11,9 +11,7 @@
                 <el-table-column prop="name" label="姓名" width="150"></el-table-column>
                 <el-table-column prop="province" label="省" :formatter="decodeProvince" width="120"></el-table-column>
                 <el-table-column label="操作" width="80">
-                    <template slot-scope="scope">
-                        <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                    </template>
+                    
                 </el-table-column>
             </el-table>
             <div class="pagination">

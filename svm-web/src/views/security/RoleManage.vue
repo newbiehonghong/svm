@@ -9,10 +9,10 @@
                 <el-table-column prop="name" label="角色名称" width="150"></el-table-column>
                 <el-table-column label="操作" width="360">
                     <template slot-scope="scope">
-                        <el-button size="small" @click="doEdit(scope.$index, scope.row)">编辑</el-button>
-                        <el-button size="small" @click="doUser(scope.$index, scope.row)">分配用户</el-button>
-                        <el-button size="small" @click="doPermission(scope.$index, scope.row)">分配权限项</el-button>
-                        <el-button size="small" type="danger" @click="doDelete(scope.$index, scope.row)">删除</el-button>
+                        <el-button size="text" icon="el-icon-edit" @click="doEdit(scope.$index, scope.row)">编辑</el-button>
+                        <el-button size="text" @click="doUser(scope.$index, scope.row)">分配用户</el-button>
+                        <el-button size="text" @click="doPermission(scope.$index, scope.row)">分配权限项</el-button>
+                        <el-button size="text" icon="el-icon-delete" @click="doDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>

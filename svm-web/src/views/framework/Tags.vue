@@ -5,7 +5,7 @@
                 <router-link :to="item.path" class="tags-li-title">
                     {{item.title}}
                 </router-link>
-                <span class="tags-li-icon" @click="closeTags(index)"><i class="el-icon-close"></i></span>
+                <span class="tags-li-icon" @click="closeTags(index)" v-if="index != 0"><i class="el-icon-close"></i></span>
             </li>
         </ul>
     </div>
@@ -59,7 +59,7 @@
             }
         },
         watch:{
-            $route(newValue, oldValue){
+            $route(newValue, oldValue) {
                 this.setTags(newValue);
             }
         },

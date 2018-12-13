@@ -50,7 +50,7 @@
         },
         computed: {
             uploadURL() {
-                return apiURL + "/user/upload";
+                return apiURL + "/sample/user/upload";
             },
             uploadHeaders() {
                 let headers = {};
@@ -65,7 +65,7 @@
                     return;
                 }
                 this.user.attachmentId = res;
-                this.imageUrl = apiURL + "/user/download/" + res + "?" + getToken();
+                this.imageUrl = apiURL + "/sample/user/download/" + res + "?" + getToken();
             },
             beforeAvatarUpload(file) {
                 const isJPG = (file.type === 'image/jpeg' || file.type === 'image/png');
@@ -94,27 +94,8 @@
 </script>
 
 <style>
-  .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-  }
-  .avatar {
-    width: 178px;
-    height: 178px;
-    display: block;
-  }
+    .el-upload--text {
+        width: 360px;
+        height: 180px;
+    }
 </style>
