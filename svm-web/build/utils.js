@@ -53,7 +53,8 @@ exports.cssLoaders = function (options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
-        fallback: 'vue-style-loader'
+        fallback: 'vue-style-loader',
+        publicPath: '../../' //解决vue应用不放在网站根目录下时css中引用图片、字体等资源问题
       })
     } else {
       return ['vue-style-loader'].concat(loaders)

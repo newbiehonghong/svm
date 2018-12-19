@@ -1,6 +1,7 @@
 export default [
     {
         path: '/form',
+        name: 'BaseForm',
         component: () => import(/* webpackChunkName: "sample" */'@/views/sample/BaseForm.vue'),
         meta: { title: '基本表单' }
     },

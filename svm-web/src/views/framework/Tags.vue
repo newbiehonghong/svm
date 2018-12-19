@@ -5,7 +5,7 @@
                 <router-link :to="item.path" class="tags-li-title">
                     {{item.title}}
                 </router-link>
-                <span class="tags-li-icon" @click="closeTags(index)" v-if="index != 0"><i class="el-icon-close"></i></span>
+                <span class="tags-li-icon" @click="closeTag(index)" v-if="index != 0"><i class="el-icon-close"></i></span>
             </li>
         </ul>
     </div>
@@ -21,32 +21,34 @@
         },
         methods: {
             isActive(path) {
-                return path === this.$route.fullPath;
+                return path === this.$route.path;
             },
             // 关闭单个标签
-            closeTags(index) {
+            closeTag(index) {
                 const delItem = this.tagsList.splice(index, 1)[0];
-                const item = this.tagsList[index] ? this.tagsList[index] : this.tagsList[index - 1];
-                if (item) {
-                    delItem.path === this.$route.fullPath && this.$router.push(item.path);
-                } else {
-                    this.$router.push('/');
+                if(delItem.path === this.$route.path) {//关闭的是当前活动标签
+                    const item = this.tagsList[index] ? this.tagsList[index] : this.tagsList[index - 1];
+                    this.$router.push(item ? item.path : '/');//push path有可能把参数丢了
                 }
 
                 const cmpName = delItem.name;
                 cmpName && bus.$emit('removeTag', cmpName);
             },
             // 设置标签
-            setTags(route) {
+            setTag(route) {
                 const isExist = this.tagsList.some(item => {
-                    return item.path === route.fullPath;
+                    if(route.name) {
+                        //组件内打开tab页用name指定，因为用path指定涉及到tab页刷新等问题比较难处理
+                        return item.name === route.name;
+                    }
+                    return item.path === route.path;
                 });
 
                 const cmpName = route.matched[1].components.default.name;
                 if(!isExist) {
                     this.tagsList.push({
                         title: route.meta.title,
-                        path: route.fullPath,
+                        path: route.path,
                         name: cmpName
                     });
                     cmpName && bus.$emit('createTag', cmpName);
@@ -55,16 +57,17 @@
         },
         computed: {
             showTags() {
+                console.log(this.tagsList.length)
                 return this.tagsList.length > 0;
             }
         },
         watch:{
             $route(newValue, oldValue) {
-                this.setTags(newValue);
+                this.setTag(newValue);
             }
         },
         created() {
-            this.setTags(this.$route);
+            this.setTag(this.$route);
         }
     }
 </script>

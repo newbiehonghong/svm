@@ -31,7 +31,7 @@
                     <el-input type="textarea" rows="5" v-model="user.memo"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit('userForm')">提交</el-button>
+                    <el-button type="primary" @click="doSubmit('userForm')">提交</el-button>
                     <el-button>取消</el-button>
                 </el-form-item>
             </el-form>
@@ -41,21 +41,13 @@
 
 <script>
     import dict from "@/dict/sample";
-    import { saveUser } from '@/api/sample';
+    import { getUser, saveUser } from '@/api/sample';
 
     export default {
         name: 'BaseForm', //keep-alive要求组件必须有name
         data: function() {
             return {
-                user: {
-                    name: '',
-                    birthday: '',
-                    province: '1',
-                    city: '1',
-                    salary: '',
-                    gender: '1',
-                    memo: ''
-                },
+                user: {},
                 sample_province: dict.sample_province,
                 sample_city: dict.sample_city,
                 rules: {
@@ -67,7 +59,7 @@
                         { required: true, message: '请选择省', trigger: 'change' }
                     ],
                     birthday: [
-                        { required: true, message: '请选择出生日期', trigger: 'change' }//如果加了【type: 'date'】会报错，取到的是string，但是会当场date来用所以出错
+                        { required: true, message: '请选择出生日期', trigger: 'change' }//如果加了【type: 'date'】会报错，取到的是string，但是会当成date来用所以出错
                     ],
                     salary: [
                         { type: 'number', message: '薪资必须为数字'}
@@ -75,8 +67,37 @@
                 }
             }
         },
+        created() {//首次构建时触发
+            this.getData();
+        },
+        activated() {//keep-alive激活时触发，即切换tab页
+            this.getData();
+        },
         methods: {
-            onSubmit(formName) {
+            getData() {
+                const id = this.$route.params.id;
+                if(id) {
+                    if(id != this.user.id) {//说明被其它组件打开且id参数变了
+                        getUser(id).then((res) => {
+                            this.user = res.data;
+                        });
+                    }
+                } else if(!this.user.id) {
+                    this.resetUser();
+                }
+            },
+            resetUser() {
+                this.user = {
+                    name: '',
+                    birthday: '',
+                    province: '1',
+                    city: '1',
+                    salary: '',
+                    gender: '1',
+                    memo: ''
+                };
+            },
+            doSubmit(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (!valid) {
                         return false;

@@ -15,7 +15,7 @@
                         :action="uploadURL"
                         :headers="uploadHeaders"
                         :show-file-list="false"
-                        :on-success="handleAvatarSuccess"
+                        :on-success="doAvatarSuccess"
                         :before-upload="beforeAvatarUpload">
                         <img v-if="imageUrl" :src="imageUrl" class="avatar">
                         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -23,7 +23,10 @@
                     </el-upload>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit('userForm')">提交</el-button>
+                    <div class="sample-pic"></div>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="doSubmit('userForm')">提交</el-button>
                     <el-button>取消</el-button>
                 </el-form-item>
             </el-form>
@@ -59,7 +62,7 @@
             }
         },
         methods: {
-            handleAvatarSuccess(res) {
+            doAvatarSuccess(res) {
                 if(typeof res !== 'number') {
                     this.$message.error('文件上传失败');
                     return;
@@ -84,7 +87,7 @@
                 }
                 return false;
             },
-            onSubmit(formName) {
+            doSubmit(formName) {
                 saveUser(this.user).then((res) => {
                     this.$message.success('提交成功！');
                 });
@@ -97,5 +100,10 @@
     .el-upload--text {
         width: 360px;
         height: 180px;
+    }
+    .sample-pic {
+        width: 260px;
+        height: 250px;
+        background: url(~assets/img/user.jpg);
     }
 </style>

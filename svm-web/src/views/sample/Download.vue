@@ -13,7 +13,7 @@
                 </el-table-column>
                 <el-table-column label="操作" width="180">
                     <template slot-scope="scope" v-if="hasPicture(scope)">
-                        <el-button size="small" @click="handleDownload(scope.$index, scope.row)">下载</el-button>
+                        <el-button size="small" @click="doDownload(scope.$index, scope.row)">下载</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -22,7 +22,7 @@
                     :page-size="pageSize" 
                     :total="totalRecords" 
                     layout="prev, pager, next" 
-                    @current-change="handleCurrentChange">
+                    @current-change="doCurrentChange">
                 </el-pagination>
             </div>
         </div>
@@ -49,7 +49,7 @@
             this.getData();
         },
         methods: {
-            handleCurrentChange(val) {
+            doCurrentChange(val) {
                 this.currentPage = val;
                 this.getData();
             },
@@ -64,7 +64,7 @@
                 var item = this.sample_province.find(element => element.value == value);
                 return item && item.label || value;
             },
-            handleDownload(index, row) {
+            doDownload(index, row) {
                 downloadPicture(row.attachmentId).then((res) => {
                     let blob = res.data;
                     let downloadElement = this.$global.getDownloadElement();

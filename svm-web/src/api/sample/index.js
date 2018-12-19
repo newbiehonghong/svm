@@ -33,6 +33,16 @@ export function deleteUser(id) {
 };
 
 /**
+ * 查询单条用户记录
+ * @param {Number} id 用户ID
+ */
+export function getUser(id) {
+    return request({
+        url: '/sample/user/get/' + id
+    });
+};
+
+/**
  * 查询所有记录
  * @param {Number} pageNum 页码 
  */

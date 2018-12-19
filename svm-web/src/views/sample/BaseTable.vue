@@ -2,16 +2,19 @@
     <div>
         <div class="container">
             <div class="handle-box">
-                <el-button class="button" @click="handleCreate" type="primary" icon="el-icon-edit">新增</el-button>
-                <el-button class="button" @click="handleDelete" icon="el-icon-delete">删除</el-button>
+                <el-button class="button" @click="doCreate" type="primary" icon="el-icon-edit">新增</el-button>
+                <el-button class="button" @click="doDelete" icon="el-icon-delete">删除</el-button>
             </div>
-            <el-table :data="data" border style="width: 100%" ref="userTable" @selection-change="handleSelectionChange">
+            <el-table :data="data" border style="width: 100%" ref="userTable" @selection-change="doSelectionChange">
                 <el-table-column type="selection" width="55"></el-table-column>
                 <el-table-column prop="birthday" label="出生日期" sortable width="150"></el-table-column>
                 <el-table-column prop="name" label="姓名" width="150"></el-table-column>
                 <el-table-column prop="province" label="省" :formatter="decodeProvince" width="120"></el-table-column>
-                <el-table-column label="操作" width="80">
-                    
+                <el-table-column label="操作" width="200">
+                    <template slot-scope="scope">
+                        <el-button size="text" icon="el-icon-edit" @click="doEdit(scope.$index, scope.row)">编辑</el-button>
+                        <el-button size="text" icon="el-icon-edit-outline" @click="doOpenTab(scope.$index, scope.row)">新tab页编辑</el-button>
+                    </template>
                 </el-table-column>
             </el-table>
             <div class="pagination">
@@ -19,7 +22,7 @@
                     :page-size="pageSize" 
                     :total="totalRecords" 
                     layout="prev, pager, next" 
-                    @current-change="handleCurrentChange">
+                    @current-change="doCurrentChange">
                 </el-pagination>
             </div>
         </div>
@@ -70,7 +73,7 @@
             this.getData();
         },
         methods: {
-            handleCurrentChange(val) {
+            doCurrentChange(val) {
                 this.currentPage = val;
                 this.getData();
             },
@@ -96,16 +99,16 @@
                     memo: null
                 };
             },
-            handleCreate() {
+            doCreate() {
                 this.resetCurrentRow();
                 this.editVisible = true;
             },
-            handleEdit(index, row) {
+            doEdit(index, row) {
                 this.currentRowIndex = index;
                 this.currentRow = Object.assign({}, row);
                 this.editVisible = true;
             },
-            handleDelete(index, row) {
+            doDelete(index, row) {
                 const count = this.multipleSelection.length;
                 if(count == 0) {
                     this.$alert('请选择要删除的记录！', '提示', {
@@ -150,9 +153,13 @@
                     });
                 }
             },
-            handleSelectionChange(val) {
+            doSelectionChange(val) {
                 this.multipleSelection = val;
             },
+            doOpenTab(index, row) {
+                //按path路由时Tags里没法区分相同组件
+                this.$router.push({name: 'BaseForm', params: {id: row.id}});
+            }
         }
     }
 
