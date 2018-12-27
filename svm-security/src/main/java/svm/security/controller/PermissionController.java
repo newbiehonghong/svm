@@ -1,11 +1,14 @@
 package svm.security.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import svm.common.exception.BaseRuntimeException;
 import svm.security.annotation.RequiredPermission;
+import svm.security.dao.PermissionMapper;
 import svm.security.entity.Permission;
 import svm.security.service.PermissionService;
 import svm.security.service.RoleService;
@@ -18,6 +21,9 @@ import java.util.List;
 public class PermissionController {
     @Autowired
     private PermissionService permissionService;
+
+    @Autowired
+    private PermissionMapper permissionMapper;
 
     @Autowired
     private RoleService roleService;
@@ -52,7 +58,9 @@ public class PermissionController {
             @RequestParam(name = "type", required = false) String type,
             @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
-        return permissionService.queryPermissions(type, pageNum, pageSize);
+        PageHelper.startPage(pageNum, pageSize);
+        List<Permission> permissions = permissionMapper.queryPermissions(type);
+        return new PageInfo(permissions);
     }
 
     @PostMapping("/queryByRoleId/{roleId}")

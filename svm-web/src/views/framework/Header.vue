@@ -1,10 +1,10 @@
 <template>
     <div class="header">
         <!-- 折叠按钮 -->
-        <div class="collapse-btn" @click="collapseChage">
+        <div class="collapse-btn" @click="toggleCollapse">
             <i class="el-icon-menu"></i>
         </div>
-        <div class="logo">后台管理系统</div>
+        <div class="logo">SVM前台交互应用示例</div>
         <div class="header-right">
             <div class="header-user-con">
                 <!-- 全屏显示 -->
@@ -26,7 +26,7 @@
                 <div class="user-avator"><img src="~assets/img/user.jpg"></div>
                 <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link">
+                    <span class="dropdown-link">
                         {{username}} <i class="el-icon-caret-bottom"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
@@ -38,7 +38,6 @@
     </div>
 </template>
 <script>
-    import bus from '@/bus';
     export default {
         data() {
             return {
@@ -62,12 +61,12 @@
                 }
             },
             // 侧边栏折叠
-            collapseChage(){
+            toggleCollapse() {
                 this.collapse = !this.collapse;
-                bus.$emit('collapse', this.collapse);
+                this.$emit('collapse', this.collapse);
             },
             // 全屏事件
-            handleFullScreen(){
+            handleFullScreen() {
                 let element = document.documentElement;
                 if (this.fullscreen) {
                     if (document.exitFullscreen) {
@@ -87,16 +86,15 @@
                     } else if (element.mozRequestFullScreen) {
                         element.mozRequestFullScreen();
                     } else if (element.msRequestFullscreen) {
-                        // IE11
                         element.msRequestFullscreen();
                     }
                 }
                 this.fullscreen = !this.fullscreen;
             }
         },
-        mounted(){
-            if(document.body.clientWidth < 1500){
-                this.collapseChage();
+        mounted() {
+            if(document.body.clientWidth < 1500) {
+                this.toggleCollapse();
             }
         }
     }
@@ -110,32 +108,32 @@
         font-size: 22px;
         color: #fff;
     }
-    .collapse-btn{
+    .collapse-btn {
         float: left;
         padding: 0 21px;
         cursor: pointer;
         line-height: 70px;
     }
-    .header .logo{
+    .header .logo {
         float: left;
         width:250px;
         line-height: 70px;
     }
-    .header-right{
+    .header-right {
         float: right;
         padding-right: 50px;
     }
-    .header-user-con{
+    .header-user-con {
         display: flex;
         height: 70px;
         align-items: center;
     }
-    .btn-fullscreen{
+    .btn-fullscreen {
         transform: rotate(45deg);
         margin-right: 5px;
         font-size: 24px;
     }
-    .btn-bell, .btn-fullscreen{
+    .btn-bell, .btn-fullscreen {
         position: relative;
         width: 30px;
         height: 30px;
@@ -143,7 +141,7 @@
         border-radius: 15px;
         cursor: pointer;
     }
-    .btn-bell-badge{
+    .btn-bell-badge {
         position: absolute;
         right: 0;
         top: -2px;
@@ -153,26 +151,23 @@
         background: #f56c6c;
         color: #fff;
     }
-    .btn-bell .el-icon-bell{
+    .btn-bell .el-icon-bell {
         color: #fff;
     }
-    .user-name{
+    .user-name {
         margin-left: 10px;
     }
-    .user-avator{
+    .user-avator {
         margin-left: 20px;
     }
-    .user-avator img{
+    .user-avator img {
         display: block;
         width:40px;
         height:40px;
         border-radius: 50%;
     }
-    .el-dropdown-link{
+    .dropdown-link {
         color: #fff;
         cursor: pointer;
-    }
-    .el-dropdown-menu__item{
-        text-align: center;
     }
 </style>

@@ -12,7 +12,6 @@
 </template>
 
 <script>
-    import bus from '@/bus';
     export default {
         data() {
             return {
@@ -32,7 +31,7 @@
                 }
 
                 const cmpName = delItem.name;
-                cmpName && bus.$emit('removeTag', cmpName);
+                cmpName && this.$emit('remove-tag', cmpName);
             },
             // 设置标签
             setTag(route) {
@@ -51,13 +50,12 @@
                         path: route.path,
                         name: cmpName
                     });
-                    cmpName && bus.$emit('createTag', cmpName);
+                    cmpName && this.$emit('create-tag', cmpName);
                 };  
             }
         },
         computed: {
             showTags() {
-                console.log(this.tagsList.length)
                 return this.tagsList.length > 0;
             }
         },
@@ -72,20 +70,18 @@
     }
 </script>
 
-<style>
+<style scoped>
     .tags {
         position: relative;
         height: 30px;
         overflow: hidden;
         background: #fff;
     }
-
     .tags ul {
         box-sizing: border-box;
         width: 100%;
         height: 100%;
     }
-
     .tags-li {
         float: left;
         margin: 3px 5px 2px 3px;
@@ -104,15 +100,14 @@
         -moz-transition: all .3s ease-in;
         transition: all .3s ease-in;
     }
-
     .tags-li:not(.active):hover {
         background: #f8f8f8;
     }
-
     .tags-li.active {
+        border: 1px solid #409EFF;
+        background-color: #409EFF;
         color: #fff;
     }
-
     .tags-li-title {
         float: left;
         max-width: 80px;
@@ -123,11 +118,9 @@
         color: #666;
         outline: none;
     }
-
     .tags-li.active .tags-li-title {
         color: #fff;
     }
-
     .tags-close-box {
         position: absolute;
         right: 0;

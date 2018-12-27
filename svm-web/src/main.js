@@ -42,6 +42,14 @@ window.addEventListener('unhandledrejection', event => {
     //console.log(event.reason);
 });
 
+//自定义指令，可以设置ElementUI元素自动获得焦点，
+//手动获得焦点即使加了{value}参数也没好用
+Vue.directive('focus', {
+    inserted: function (el) {
+        el.querySelector('input').focus();
+    }
+});
+
 new Vue({
     router,
     store,

@@ -1,6 +1,5 @@
 package svm.security.service;
 
-import com.github.pagehelper.PageInfo;
 import svm.security.entity.Permission;
 import svm.security.session.UserSession;
 
@@ -13,8 +12,6 @@ public interface PermissionService {
     void updatePermission(Permission permission);
 
     void deletePermission(String id);
-
-    PageInfo<Permission> queryPermissions(String type, int pageNum, int pageSize);
 
     List<String> queryByRoleId(String roleId);
 

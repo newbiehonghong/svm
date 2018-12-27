@@ -115,7 +115,6 @@
             saveEdit() {
                 if(this.isCreate) {
                     saveUser(this.currentRow).then((res) => {
-                        console.log(res.data)
                         this.currentRow.id = res.data; 
                         this.data.unshift(this.currentRow);
                         this.editVisible = false;

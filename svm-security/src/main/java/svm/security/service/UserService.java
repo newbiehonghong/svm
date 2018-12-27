@@ -1,6 +1,5 @@
 package svm.security.service;
 
-import com.github.pagehelper.PageInfo;
 import svm.security.entity.User;
 
 import java.util.List;
@@ -15,8 +14,6 @@ public interface UserService {
     User getUser(Long id);
 
     User getUserByName(String name);
-
-    PageInfo<User> queryAllUsers(int pageNum, int pageSize);
 
     List<Long> queryByRoleId(String roleId);
 

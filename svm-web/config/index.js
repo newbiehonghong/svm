@@ -11,14 +11,6 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
 
-    /*proxyTable: {
-      '/do': {
-          target: 'http://localhost:8088/svm',
-          changeOrigin: true,
-          pathRewrite: {'^/do': ''}
-      }
-    },*/
-
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined

@@ -7,39 +7,39 @@
 CREATE TABLE sys_user
 (
     user_id numeric(18,0) NOT NULL,
-    name character varying(64),
-    nickname character varying(64),
-    password character varying(32),
+    name varchar(64),
+    nickname varchar(64),
+    password varchar(32),
     create_time date,
     CONSTRAINT pk_sys_user PRIMARY KEY (user_id)
 );
 
 CREATE TABLE sys_role
 (
-    role_id character varying(32) NOT NULL,
-    name character varying(64),
+    role_id varchar(32) NOT NULL,
+    name varchar(64),
     CONSTRAINT pk_sys_role PRIMARY KEY (role_id)
 );
 
 CREATE TABLE sys_user_role_map
 (
     user_id numeric(18,0) NOT NULL,
-    role_id character varying(32) NOT NULL,
+    role_id varchar(32) NOT NULL,
     CONSTRAINT sys_user_role_map_pk PRIMARY KEY (user_id, role_id)
 );
 
 CREATE TABLE sys_permission
 (
-    permission_id character varying(64) NOT NULL,
-    name character varying(64),
-	type character varying(16),
+    permission_id varchar(64) NOT NULL,
+    name varchar(64),
+	type varchar(16),
     CONSTRAINT sys_permission_pk PRIMARY KEY (permission_id)
 );
 
 CREATE TABLE sys_role_permission_map
 (
-    role_id character varying(32) NOT NULL,
-	permission_id character varying(64) NOT NULL,
+    role_id varchar(32) NOT NULL,
+	permission_id varchar(64) NOT NULL,
     CONSTRAINT sys_role_permission_map_pk PRIMARY KEY (role_id, permission_id)
 );
 

@@ -67,7 +67,7 @@
                 }
             }
         },
-        created() {//首次构建时触发
+        created() {
             this.getData();
         },
         activated() {//keep-alive激活时触发，即切换tab页

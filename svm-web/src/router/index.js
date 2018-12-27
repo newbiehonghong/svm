@@ -46,14 +46,14 @@ const constantRouterMap = [
     }
 ];
 
-function getAbsolutePath () {
+function getContextPath () {
     let path = location.pathname;
     return path.substring(0, path.lastIndexOf('/') + 1);
 }
 
 export default new Router({
     //mode: 'history',//history模式下刷新或者直接请求http://yoursite.com/user/id，会报404错误
-    base: getAbsolutePath(),//default is '/', modify for vue is not at web root directory
+    base: getContextPath(),//default is '/', modify for vue is not at web root directory
     routes: constantRouterMap
 });
 

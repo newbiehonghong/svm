@@ -10,10 +10,11 @@
                 <el-table-column prop="birthday" label="出生日期" sortable width="150"></el-table-column>
                 <el-table-column prop="name" label="姓名" width="150"></el-table-column>
                 <el-table-column prop="province" label="省" :formatter="decodeProvince" width="120"></el-table-column>
-                <el-table-column label="操作" width="200">
+                <el-table-column label="操作" width="300">
                     <template slot-scope="scope">
                         <el-button size="text" icon="el-icon-edit" @click="doEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="text" icon="el-icon-edit-outline" @click="doOpenTab(scope.$index, scope.row)">新tab页编辑</el-button>
+                        <el-button size="text" icon="el-icon-edit-outline" @click="doOpenDialog(scope.$index, scope.row)">对话框选择</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -47,120 +48,10 @@
                 <el-button @click="editVisible = false">取 消</el-button>
             </span>
         </el-dialog>
+
+        <!--如果弹窗内容较多，出现了滚动条，需要每次打开还原到顶部，则需要添加v-if指令，因为这个指令是动态渲染内容的-->
+        <dept-tree-dialog v-if="deptVisible" @close="doCloseDialog" :filter="dialogFilter"></dept-tree-dialog>
     </div>
 </template>
 
-<script>
-    import dict from "@/dict/sample";
-    import { queryAllUsers, saveUser, updateUser, deleteUser } from '@/api/sample';
-
-    export default {
-        name: 'BaseTable',
-        data() {
-            return {
-                data: [],
-                currentPage: 1,
-                currentRow: {},
-                currentRowIndex: -1,
-                multipleSelection: [],
-                pageSize: 10,
-                totalRecords: 0,
-                editVisible: false,
-                sample_province: dict.sample_province
-            }
-        },
-        created() {
-            this.getData();
-        },
-        methods: {
-            doCurrentChange(val) {
-                this.currentPage = val;
-                this.getData();
-            },
-            getData() {
-                queryAllUsers(this.currentPage).then((res) => {
-                    this.data = res.data.list;
-                    this.totalRecords = res.data.pages * this.pageSize;
-                })
-            },
-            decodeProvince(row, column) {
-                var value = row.province;
-                var item = this.sample_province.find(element => element.value == value);
-                return item && item.label || value;
-            },
-            resetCurrentRow() {
-                this.currentRow = {
-                    name: null,
-                    birthday: null,
-                    province: '1',
-                    city: '1',
-                    salary: null,
-                    gender: '1',
-                    memo: null
-                };
-            },
-            doCreate() {
-                this.resetCurrentRow();
-                this.editVisible = true;
-            },
-            doEdit(index, row) {
-                this.currentRowIndex = index;
-                this.currentRow = Object.assign({}, row);
-                this.editVisible = true;
-            },
-            doDelete(index, row) {
-                const count = this.multipleSelection.length;
-                if(count == 0) {
-                    this.$alert('请选择要删除的记录！', '提示', {
-                        confirmButtonText: '确定'
-                    });
-                    return;
-                }
-
-                this.$confirm('删除不可恢复，是否确定删除？', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    let ids = '';
-                    for (let i = 0; i < count; i++) {
-                        if(i > 0) {
-                            ids += ',';
-                        }
-                        ids += this.multipleSelection[i].id;
-                    }
-
-                    deleteUser(ids).then((res) => {
-                        for (let i = count - 1; i >= 0; i--) {
-                            this.data.splice(i, 1);
-                        }   
-                        this.multipleSelection = [];
-                        this.$refs.userTable.clearSelection();
-                    })
-                });
-            },
-            saveEdit() {
-                if(this.currentRow.id) {
-                    updateUser(this.currentRow).then((res) => {
-                        this.$set(this.data, this.currentRowIndex, this.currentRow);
-                        this.editVisible = false;
-                    });
-                } else {
-                    saveUser(this.currentRow).then((res) => {
-                        this.currentRow.id = res.data;//设置主键
-                        this.data.unshift(this.currentRow);
-                        this.editVisible = false;
-                    });
-                }
-            },
-            doSelectionChange(val) {
-                this.multipleSelection = val;
-            },
-            doOpenTab(index, row) {
-                //按path路由时Tags里没法区分相同组件
-                this.$router.push({name: 'BaseForm', params: {id: row.id}});
-            }
-        }
-    }
-
-</script>
+<script src="./BaseTable.js"></script>

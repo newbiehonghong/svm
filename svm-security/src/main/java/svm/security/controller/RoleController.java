@@ -1,10 +1,15 @@
 package svm.security.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import svm.security.annotation.RequiredPermission;
+import svm.security.dao.RoleMapper;
 import svm.security.entity.Role;
 import svm.security.service.RoleService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/security/role")
@@ -12,6 +17,9 @@ import svm.security.service.RoleService;
 public class RoleController {
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     @PostMapping("/save")
     @RequiredPermission("security_role_add")
@@ -44,7 +52,9 @@ public class RoleController {
                     int pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
                     int pageSize) {
-        return roleService.queryAllRoles(pageNum, pageSize);
+        PageHelper.startPage(pageNum, pageSize);
+        List<Role> roles = roleMapper.queryAllRoles();
+        return new PageInfo(roles);
     }
 
     @PostMapping("/queryByUserId/{userId}")

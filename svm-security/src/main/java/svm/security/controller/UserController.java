@@ -1,11 +1,14 @@
 package svm.security.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import svm.common.exception.BaseRuntimeException;
 import svm.security.annotation.RequiredPermission;
+import svm.security.dao.UserMapper;
 import svm.security.entity.User;
 import svm.security.service.RoleService;
 import svm.security.service.UserService;
@@ -18,6 +21,9 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Autowired
     private RoleService roleService;
@@ -54,11 +60,11 @@ public class UserController {
     @PostMapping("/queryAll")
     @ResponseBody
     public Object queryAllUsers(
-            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
-                    int pageNum,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "10")
-                    int pageSize) {
-        return userService.queryAllUsers(pageNum, pageSize);
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<User> users = userMapper.queryAllUsers();
+        return new PageInfo(users);
     }
 
     @PostMapping("/queryByRoleId/{roleId}")

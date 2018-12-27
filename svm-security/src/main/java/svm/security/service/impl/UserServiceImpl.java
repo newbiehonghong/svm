@@ -1,7 +1,5 @@
 package svm.security.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,13 +52,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByName(String name) {
         return userMapper.getUserByName(name);
-    }
-
-    @Override
-    public PageInfo<User> queryAllUsers(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<User> users = userMapper.queryAllUsers();
-        return new PageInfo(users);
     }
 
     @Override

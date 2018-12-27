@@ -54,17 +54,26 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }),
     // copy element-ui css\fonts files
     new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../node_modules/element-ui/lib/theme-chalk/index.css'),
-        to: config.build.assetsSubDirectory
-      }
+        {
+            from: path.resolve(__dirname, '../node_modules/element-ui/lib/theme-chalk/index.css'),
+            to: config.dev.assetsSubDirectory
+        },
+        {
+            from: path.resolve(__dirname, '../node_modules/element-ui/lib/theme-chalk/fonts'),
+            to: config.dev.assetsSubDirectory + '/fonts'
+        }
     ]),
+    // copy test resource // copy mockjs
     new CopyWebpackPlugin([
         {
-          from: path.resolve(__dirname, '../node_modules/element-ui/lib/theme-chalk/fonts'),
-          to: config.build.assetsSubDirectory + '/fonts'
+            from: path.resolve(__dirname, '../node_modules/mockjs/dist/mock.js'),
+            to: config.dev.assetsSubDirectory
+        },
+        {
+            from: path.resolve(__dirname, '../test'),
+            to: config.dev.assetsSubDirectory
         }
-      ])
+    ])
   ]
 })
 

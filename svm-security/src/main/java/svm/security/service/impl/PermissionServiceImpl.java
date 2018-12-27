@@ -1,7 +1,5 @@
 package svm.security.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,13 +39,6 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public void deletePermission(String id) {
         permissionMapper.delete(id);
-    }
-
-    @Override
-    public PageInfo<Permission> queryPermissions(String type, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<Permission> permissions = permissionMapper.queryPermissions(type);
-        return new PageInfo(permissions);
     }
 
     @Override

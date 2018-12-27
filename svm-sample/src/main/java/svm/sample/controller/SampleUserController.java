@@ -1,5 +1,7 @@
 package svm.sample.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import svm.common.exception.BaseRuntimeException;
+import svm.sample.dao.SampleUserMapper;
 import svm.sample.entity.UserAttachment;
 import svm.sample.entity.UserDO;
 import svm.sample.service.UserService;
@@ -17,6 +20,7 @@ import svm.sample.service.dto.UserQueryDTO;
 import svm.security.annotation.RequiredPermission;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/sample/user")
@@ -25,6 +29,9 @@ public class SampleUserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SampleUserMapper sampleUserMapper;
 
     private Logger logger = LoggerFactory.getLogger(SampleUserController.class);
 
@@ -62,32 +69,32 @@ public class SampleUserController {
     @PostMapping("/queryAll")
     @ResponseBody
     public Object queryAllUsers(
-            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
-                    int pageNum,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "10")
-                    int pageSize) {
-        return userService.queryAllUsers(pageNum, pageSize);
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+        PageHelper.startPage(pageNum, pageSize, pageNum == 1);
+        List<UserDO> users = sampleUserMapper.queryAllUsers();
+        return new PageInfo(users);
     }
 
     @PostMapping("/query")
     @ResponseBody
     public Object queryUsers(
             @RequestBody UserQueryDTO userQuery,
-            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
-                    int pageNum,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "10")
-                    int pageSize) {
-        return userService.queryUsers(userQuery, pageNum, pageSize);
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+        PageHelper.startPage(pageNum, pageSize, pageNum == 1);
+        List<UserDO> users = sampleUserMapper.queryUsers(userQuery);
+        return new PageInfo(users);
     }
 
     @PostMapping("/queryDownload")
     @ResponseBody
     public Object queryDownloadUsers(
-            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
-                    int pageNum,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "10")
-                    int pageSize) {
-        return userService.queryDownloadUsers(pageNum, pageSize);
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+        PageHelper.startPage(pageNum, pageSize, pageNum == 1);
+        List<UserDO> users = sampleUserMapper.queryDownloadUsers();
+        return new PageInfo(users);
     }
 
     @PostMapping("/upload")

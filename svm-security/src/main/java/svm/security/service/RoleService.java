@@ -1,6 +1,5 @@
 package svm.security.service;
 
-import com.github.pagehelper.PageInfo;
 import svm.security.entity.Role;
 
 import java.util.List;
@@ -13,8 +12,6 @@ public interface RoleService {
     void deleteRole(String id);
 
     Role getRole(String id);
-
-    PageInfo<Role> queryAllRoles(int pageNum, int pageSize);
 
     List<String> queryByUserId(Long userId);
 
