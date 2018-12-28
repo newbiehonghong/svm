@@ -60,7 +60,8 @@
 
 <script>
     import dict from "@/dict/security";
-    import { queryPermissions, savePermission, updatePermission, deletePermission, queryAllRoles, queryRolesByPermissionId, savePermissionRoles } from '@/api/security';
+    import { queryPermissions, savePermission, updatePermission, deletePermission, savePermissionRoles } from '@/api/security/permission';
+    import { queryAllRoles, queryRolesByPermissionId } from '@/api/security/role';
 
     export default {
         name: 'PermissionManage',

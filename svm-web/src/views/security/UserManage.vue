@@ -50,7 +50,8 @@
 </template>
 
 <script>
-    import { queryAllUsers, saveUser, updateUser, deleteUser, queryAllRoles, queryRolesByUserId, saveUserRoles } from '@/api/security';
+    import { queryAllUsers, saveUser, updateUser, deleteUser, saveUserRoles } from '@/api/security/user';
+    import { queryAllRoles, queryRolesByUserId } from '@/api/security/role';
 
     export default {
         name: 'UserManage',

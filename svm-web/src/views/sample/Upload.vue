@@ -36,7 +36,7 @@
 
 <script>
     import { apiURL, addToken, getToken } from '@/utils/request';
-    import { saveUser } from '@/api/sample';
+    import { saveUser } from '@/api/sample/user';
 
     export default {
         name: 'Upload',

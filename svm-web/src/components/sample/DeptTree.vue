@@ -1,6 +1,9 @@
 <template>
-    <el-dialog title="选择部门" :visible="visible" width="50%" :before-close="closeDialog">
-        <el-tree ref="deptTree" :data="data" :props="defaultProps" @node-click="doNodeClick"></el-tree>
+    <el-dialog title="选择部门" visible width="50%" :before-close="closeDialog">
+        <el-scrollbar>
+            <el-tree ref="deptTree" :props="defaultProps" @node-click="doNodeClick" 
+                lazy :load="doLoadNodes" style="height: 300px"></el-tree>
+        </el-scrollbar>
         <span slot="footer" class="dialog-footer">
             <el-button type="primary" @click="doConfirm">确 定</el-button>
             <el-button @click="closeDialog">取 消</el-button>
@@ -9,74 +12,43 @@
 </template>
 
 <script>
+    import { queryAllDept } from '@/api/sample/dept';
+
     export default {
         props: {
             filter: {type: Object, default: () => {}}
         },
         data() {
             return {
-                data: [],
+                data: null,
                 defaultProps: {
-                    children: 'children',
-                    label: 'label'
-                },
-                visible: true
+                    label: 'name'
+                }
             }
         },
         created() {
-            this.getData();
+            //请求数据方法时异步的，数据没回来时树节点的load方法就被调用了，此时数据还是空的呢
+            //this.getData();
         },
         methods: {
-            getData() {
-                console.log(this.filter);//可以根据传入的属性过滤数据
-                this.data = [{
-                    label: 'Level one 1',
-                    children: [{
-                        label: 'Level two 1-1',
-                        children: [{
-                            label: 'Level three 1-1-1'
-                        }]
-                    }]
-                }, {
-                    label: 'Level one 2',
-                    children: [{
-                        label: 'Level two 2-1',
-                        children: [{
-                            label: 'Level three 2-1-1'
-                        }]
-                    }, {
-                        label: 'Level two 2-2',
-                        children: [{
-                            label: 'Level three 2-2-1'
-                        }]
-                    }]
-                }, {
-                    label: 'Level one 3',
-                    children: [{
-                        label: 'Level two 3-1',
-                            children: [{
-                                label: 'Level three 3-1-1'
-                            }]
-                        }, {
-                        label: 'Level two 3-2',
-                        children: [{
-                            label: 'Level three 3-2-1'
-                        }]
-                    }]
-                }, {
-                    label: 'Level one 4',
-                    children: [{
-                        label: 'Level two 4-1',
-                            children: [{
-                                label: 'Level three 4-1-1'
-                            }]
-                        }, {
-                        label: 'Level two 4-2',
-                        children: [{
-                            label: 'Level three 4-2-1'
-                        }]
-                    }]
-                }]
+            doLoadNodes(node, resolve) {
+                if(node.level == 0) {
+                    queryAllDept().then((res) => {
+                        this.data = res.data;
+                        resolve(this.filterData("0"));
+                    });
+                } else {
+                    resolve(this.filterData(node.data.id));
+                }
+            },
+            filterData(parentId) {
+                var rows = [];
+                for(let i = this.data.length - 1; i >= 0; i--) {
+                    if(this.data[i].parent == parentId) {
+                        rows.unshift(this.data.splice(i, 1)[0]);//用unshift插入数组头部保证节点原始顺序
+                    }
+                }
+                return rows;
             },
             doNodeClick(data) {
                 //console.log(data);

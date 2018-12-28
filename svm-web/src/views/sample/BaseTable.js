@@ -1,6 +1,6 @@
 import DeptTreeDialog from "@/components/sample/DeptTree";
 import dict from "@/dict/sample";
-import { queryAllUsers, saveUser, updateUser, deleteUser } from '@/api/sample';
+import { queryAllUsers, saveUser, updateUser, deleteUser } from '@/api/sample/user';
 
 export default {
     name: 'BaseTable',

@@ -32,7 +32,7 @@
 <script>
     import dict from "@/dict/sample";
     import { apiURL, getToken } from '@/utils/request';
-    import { queryDownloadUsers, downloadPicture } from '@/api/sample';
+    import { queryDownloadUsers, downloadPicture } from '@/api/sample/user';
 
     export default {
         name: 'DownloadTable',

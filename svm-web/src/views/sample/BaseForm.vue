@@ -41,7 +41,7 @@
 
 <script>
     import dict from "@/dict/sample";
-    import { getUser, saveUser } from '@/api/sample';
+    import { getUser, saveUser } from '@/api/sample/user';
 
     export default {
         name: 'BaseForm', //keep-alive要求组件必须有name

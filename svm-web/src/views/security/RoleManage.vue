@@ -57,8 +57,9 @@
 </template>
 
 <script>
-    import { queryAllRoles, saveRole, updateRole, deleteRole, queryAllUsers, queryUsersByRoleId, saveRoleUsers, queryPermissions, queryPermissionsByRoleId, saveRolePermissions } from '@/api/security';
-
+    import { queryAllRoles, saveRole, updateRole, deleteRole, saveRoleUsers, saveRolePermissions } from '@/api/security/role';
+    import { queryAllUsers, queryUsersByRoleId } from '@/api/security/user';
+    import { queryPermissions, queryPermissionsByRoleId } from '@/api/security/permission';
     export default {
         name: 'RoleManage',
         data() {

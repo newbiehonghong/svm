@@ -1,4 +1,5 @@
 truncate table SAMPLE_EMP;
+truncate table SAMPLE_DEPT;
 
 insert into SAMPLE_EMP (EMP_ID, NAME, BIRTHDAY, PROVINCE, CITY, DEPT_ID, MEMO, START_TIME, SALARY, LAST_MODIFIED, GENDER, IS_MARRIAGE, WORK_YEAR, FILE_NAME)
 values (4862, '周红梅', to_date('03-08-1967', 'dd-mm-yyyy'), '1', '4', null, '员工', null, 6324.85, null, '1', '0', 30, null);
@@ -18601,4 +18602,74 @@ insert into SAMPLE_EMP (EMP_ID, NAME, BIRTHDAY, PROVINCE, CITY, DEPT_ID, MEMO, S
 values (3542, '马魁', to_date('18-03-1970', 'dd-mm-yyyy'), '1', '1', '0502', '员工', null, 2318.18, null, '0', '1', 27, null);
 insert into SAMPLE_EMP (EMP_ID, NAME, BIRTHDAY, PROVINCE, CITY, DEPT_ID, MEMO, START_TIME, SALARY, LAST_MODIFIED, GENDER, IS_MARRIAGE, WORK_YEAR, FILE_NAME)
 values (3546, '杜光俊', to_date('20-01-1954', 'dd-mm-yyyy'), '1', '1', '0502', '员工', null, 2320.2, null, '0', '1', 43, null);
+commit;
+
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('01', '部门01', '0');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('02', '部门02', '0');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('03', '部门03', '0');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('04', '部门04', '0');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('05', '部门05', '0');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('06', '部门06', '0');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('07', '部门07', '0');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('08', '部门08', '0');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0101', '部门0101', '01');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0102', '部门0102', '01');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0103', '部门0103', '01');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0104', '部门0104', '01');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0201', '部门0201', '02');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0202', '部门0202', '02');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0301', '部门0301', '03');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0302', '部门0302', '03');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0303', '部门0303', '03');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0401', '部门0401', '04');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0402', '部门0402', '04');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0403', '部门0403', '04');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0501', '部门0501', '05');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0502', '部门0502', '05');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0503', '部门0503', '05');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0601', '部门0601', '06');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0602', '部门0602', '06');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0603', '部门0603', '06');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0701', '部门0701', '07');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0702', '部门0702', '07');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0703', '部门0703', '07');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0801', '部门0801', '08');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('0802', '部门0802', '08');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('010101', '部门010101', '0101');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('010102', '部门010102', '0101');
+insert into SAMPLE_DEPT (DEPT_ID, DEPT_NAME, PARENT_ID)
+values ('010103', '部门010103', '0101');
 commit;

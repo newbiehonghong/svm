@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import svm.common.exception.BaseRuntimeException;
+import svm.sample.dao.SampleDeptMapper;
 import svm.sample.dao.SampleUserMapper;
 import svm.sample.entity.UserAttachment;
 import svm.sample.entity.UserDO;
@@ -32,6 +33,9 @@ public class SampleUserController {
 
     @Autowired
     private SampleUserMapper sampleUserMapper;
+
+    @Autowired
+    private SampleDeptMapper sampleDeptMapper;
 
     private Logger logger = LoggerFactory.getLogger(SampleUserController.class);
 
@@ -136,5 +140,11 @@ public class SampleUserController {
         } catch(Exception e){
             throw new BaseRuntimeException(e);
         }
+    }
+
+    @PostMapping("/queryAllDept")
+    @ResponseBody
+    public Object queryAllDept() {
+        return sampleDeptMapper.queryAll();
     }
 }
