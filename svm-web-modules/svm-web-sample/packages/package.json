@@ -1,0 +1,9 @@
+{
+  "name": "svm-web-sample",
+  "version": "0.0.9",
+  "description": "Vue Web Sample",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

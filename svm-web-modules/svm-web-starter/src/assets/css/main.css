@@ -1,0 +1,115 @@
+* {
+	-webkit-box-sizing: border-box;
+  	-moz-box-sizing: border-box;
+  	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#app,
+.wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'PingFang SC', "Helvetica Neue", Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
+}
+
+a {
+    text-decoration: none
+}
+
+.content-box {
+    position: absolute;
+    left: 250px;
+    right: 0;
+    top: 70px;
+    bottom: 0;
+    overflow: hidden;
+    -webkit-transition: left .3s ease-in-out;
+    transition: left .3s ease-in-out;
+}
+
+.content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 30px;
+    bottom: 2px;
+    overflow-y:auto;
+    width: auto;
+    padding: 10px;
+}
+
+.content-collapse {
+    left: 65px;
+}
+
+.container {
+    margin: 2px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.form-box {
+    width: 600px;
+}
+
+.handle-box {
+    padding-bottom: 10px;
+    float: right;
+}
+.handle-box .button {
+    display: inline-block;
+    vertical-align: middle;
+}
+.filter-box {
+    display: inline-block;
+    padding-bottom: 10px;
+}
+.filter-box .filter-item {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.avatar-uploader .el-upload {
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.avatar-uploader .avatar-uploader-icon {
+    font-size: 28px;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+}
+
+.pagination {
+    margin: 20px 0;
+    text-align: right;
+}
+/* grid head sort icon */
+.el-table .caret-wrapper {
+    height: 24px;
+}
+.el-table .sort-caret.ascending {
+    top: 0
+}
+.el-table .sort-caret.descending {
+    bottom: 0;
+}
+/* grid row height */
+.el-table--small td, 
+.el-table--small th {
+    padding: 4px 0;
+}
+/* while el-button in grid cell */
+.el-table .cell .el-button--text {
+    padding: 0;
+}
