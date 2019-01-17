@@ -56,8 +56,13 @@
             },
             doConfirm() {
                 var node = this.$refs.deptTree.getCurrentNode();
-                var label = node ? node.label : '';
-                this.closeDialog(null, label);    
+                if(node) {
+                    var data = {
+                        id: node.id,
+                        name: node.name
+                    };
+                    this.closeDialog(null, data); 
+                } 
             },
             closeDialog(evt, data) {
                 //此处需要通知父组件修改visible属性，不能直接调用this.visible = false，否则报错

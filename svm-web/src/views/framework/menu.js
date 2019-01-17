@@ -35,11 +35,6 @@ export default [
                 title: '文件下载'
             },
             {
-                icon: 'el-icon-rank',
-                index: 'drag',
-                title: '拖拽列表'
-            },
-            {
                 icon: 'el-icon-check',
                 index: 'test',
                 title: '临时测试'

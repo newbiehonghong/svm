@@ -119,7 +119,9 @@ export default {
             this.deptVisible = true;
         },
         doCloseDialog(data) {
-            console.log(data);
+            if(data) {
+                console.log("dialog return data is: {id:" + data.id + ",name:" + data.name + "}");
+            }
             this.deptVisible = false;
         }
     }

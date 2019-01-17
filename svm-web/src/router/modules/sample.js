@@ -26,12 +26,6 @@ export default [
         meta: { title: '文件下载' }   
     },
     {
-        // 拖拽列表组件
-        path: '/drag',
-        component: () => import(/* webpackChunkName: "sample" */'@/views/sample/DragList.vue'),
-        meta: { title: '拖拽列表' }
-    },
-    {
         // 临时测试组件
         path: '/test',
         component: () => import(/* webpackChunkName: "sample" */'@/views/sample/Test.vue'),

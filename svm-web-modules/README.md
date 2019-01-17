@@ -12,5 +12,4 @@ svm-web-stater是框架工程，svm-web-sample和svm-web-security是两个独立
 主要处理了ajax请求、资源引用路径（都用相对路径）
 
 遗留问题：
-1. 基础表格中部门选择对话框返回值为undefined
-2. 基础表格打开基本表单tab页后每次切换都新打开一个基本表单tab页
+1. 基础表格打开基本表单tab页后每次切换都新打开一个基本表单tab页
