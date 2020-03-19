@@ -1,8 +1,8 @@
 package svm.common.generator;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service(value = "iGenerator")
 public class SnowflakeGenerator implements IGenerator, InitializingBean {

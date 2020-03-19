@@ -1,0 +1,166 @@
+
+.el-button--medium {
+    padding: 5px 15px;
+}
+
+/* form */
+/*
+.el-form-item--medium {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-bottom: 2px;
+
+    .el-form-item__content {
+        line-height: normal;
+    }
+    .el-form-item__label {
+        background-color: #212327;
+        border-radius: 3px 0 0 3px;
+        padding-left: 12px;
+        color: #909399;
+        font-weight: bold;
+        width: 160px;
+    }
+    .el-radio-group,
+    .el-switch {
+        padding: 10px;
+        background-color: #09090b;
+        border: 1px solid #262628;
+        border-radius: 0 3px 3px 0;
+        height: 36px;
+    }
+}
+.el-input__inner,
+.el-textarea__inner {
+    border-radius: 0 3px 3px 0;
+}
+.el-input__inner:focus {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 5px #5794f2;
+    outline: medium none;
+}
+.el-form-item.is-error .el-input__inner,
+.el-form-item.is-error .el-input__inner:focus,
+.el-form-item.is-error .el-textarea__inner,
+.el-form-item.is-error .el-textarea__inner:focus {
+    border-color: #262628;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 5px #f56c6c;
+}
+
+.el-form-item.is-required:not(.is-no-asterisk) .el-form-item__label-wrap > .el-form-item__label::before,
+.el-form-item.is-required:not(.is-no-asterisk) > .el-form-item__label::before {
+    content: none;
+}
+.el-form-item.is-required:not(.is-no-asterisk) .el-form-item__label-wrap > .el-form-item__label::after,
+.el-form-item.is-required:not(.is-no-asterisk) > .el-form-item__label::after {
+    color: #E97A18;
+    content: "*";
+    margin-left: 6px;
+}
+
+.el-cascader-node__postfix {
+    position: relative;
+    margin-left: 10px;
+}
+*/
+/* table */
+.el-table .caret-wrapper {
+    height: 24px;
+}
+.el-table .sort-caret.ascending {
+    top: 0
+}
+.el-table .sort-caret.descending {
+    bottom: 0;
+}
+.el-table .cell .el-button--text {
+    padding: 0;
+}
+.el-table th, .el-table td {
+    padding: 4px 0;
+}
+.el-table .cell {
+    line-height: 30px;
+}
+.el-table--striped .el-table__body tr.el-table__row--striped td {
+    background: #161719 none repeat scroll 0 0;
+}
+
+/* dialog */
+.el-dialog__body > .el-scrollbar > .el-scrollbar__wrap {
+    overflow-x: hidden;
+}
+
+/* menu */
+.el-menu {
+    border: 0;
+    min-width: auto;
+}
+.el-menu-item {
+    height: 40px;
+    line-height: 40px;
+}
+.el-submenu:hover {
+    border-image: linear-gradient(#ffd500, #f40 99%, #f40) 1 1 1 1;
+    border-width: 0 0 0 2px;
+    border-style: solid;
+    min-width: auto;
+}
+.el-submenu {
+    border-color: #000;
+    border-width: 0 2px 0 2px;
+    border-style: solid;
+    min-width: auto;
+}
+.el-menu--popup-right-start {
+    margin-left: 1px;
+}
+.el-menu--popup {
+    background-color: #161719;
+    box-shadow: 0 0 20px #000000;
+    -webkit-box-shadow: 0 0 20px #000000;
+}
+.el-menu--collapse {
+    width: 64px;
+}
+
+/* dropdown */
+.el-dropdown-menu {
+    background-color: #161719;
+    box-shadow: 5px 5px 20px -5px #000;
+}
+.el-dropdown-menu__item {
+    color: #fff;
+}
+.el-popper[x-placement^="bottom"] {
+    margin-top: 4px;
+}
+
+/* upload */
+.avatar-uploader .el-upload {
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.avatar-uploader .avatar-uploader-icon {
+    font-size: 28px;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+}
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+}
+.avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+}
+.avatar-uploader .avatar-uploader-icon {
+    color: #8c939d;
+}
+
+/* transfer */
+.el-checkbox.el-transfer-panel__item {
+    display: block;
+}

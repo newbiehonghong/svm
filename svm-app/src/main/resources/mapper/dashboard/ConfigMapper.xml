@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="svm.app.dao.dashboard.ConfigMapper">
+
+    <resultMap id="BaseResultMap" type="svm.app.entity.dashboard.Config">
+        <id column="conf_id" property="id"  />
+        <result column="conf_type" property="type" />
+        <result column="conf_index" property="index" />
+        <result column="conf_mode" property="mode" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        conf_id,conf_type,width,height,conf_index,count,conf_mode,services,apis
+    </sql>
+
+    <insert id="save" parameterType="svm.app.entity.dashboard.Config">
+        insert into dashboard_config(<include refid="Base_Column_List"/>)
+        values (
+            #{id,jdbcType=NUMERIC},
+            #{type, jdbcType=NUMERIC},
+            #{width, jdbcType=NUMERIC},
+            #{height, jdbcType=NUMERIC},
+            #{index, jdbcType=NUMERIC},
+            #{count, jdbcType=NUMERIC},
+			#{mode,jdbcType=VARCHAR},
+            #{services,jdbcType=VARCHAR},
+            #{apis,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="update" parameterType="svm.app.entity.dashboard.Config">
+        update dashboard_config set
+            conf_type=#{type, jdbcType=NUMERIC},
+            width=#{width, jdbcType=NUMERIC},
+            height=#{height, jdbcType=NUMERIC},
+            count=#{count, jdbcType=NUMERIC},
+            conf_mode=#{mode,jdbcType=VARCHAR},
+            services=#{services,jdbcType=VARCHAR},
+            apis=#{apis,jdbcType=VARCHAR}
+        where conf_id=#{id,jdbcType=NUMERIC}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from dashboard_config
+        where conf_id=#{id}
+    </delete>
+
+    <select id="queryAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from dashboard_config
+        order by conf_index,conf_id
+    </select>
+
+    <update id="updateLayout">
+        update dashboard_config set
+        conf_index=#{index}
+        where conf_id=#{id}
+    </update>
+</mapper>

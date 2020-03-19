@@ -1,0 +1,80 @@
+$--color-primary: teal;
+$--color-white: #1f1f20;
+$--color-black: #161719;
+$--color-info: #909399;
+
+$--color-text-primary: #d8d9da;
+$--color-text-regular: #d8d9da;
+
+$--background-color-base: #303133;
+$--table-header-background-color: $--color-black;
+$--table-row-hover-background-color: transparent;
+
+$--border-color-light: #5794f2;
+$--border-color-lighter: #1f1f20;
+$--border-color-base: #262628;
+$--border-color-hover: $--border-color-base;
+
+$--input-background-color: #09090b;
+$--input-focus-border: $--border-color-base;
+$--input-placeholder-color: #666;
+
+$--disabled-border-base: $--border-color-base;
+$--disabled-fill-base: rgba($--input-background-color, 0.5);
+$--disabled-color-base: $--color-info;
+
+$--button-primary-font-color: white;
+/*
+$--button-default-border-color: #393A3C;
+$--button-default-background-color: #393A3C;
+$--button-default-font-color: white;
+
+$--button-primary-border-color: #22843B;
+$--button-primary-background-color: #22843B;
+$--button-primary-font-color: white;
+
+$--button-danger-border-color: firebrick;
+$--button-danger-background-color: firebrick;
+$--button-danger-font-color: white;
+
+$--button-info-border-color: #393A3C;
+$--button-info-background-color: #393A3C;
+$--button-info-font-color: white;
+
+$--button-success-border-color: transparent;
+$--button-success-background-color: transparent;
+$--button-success-font-color: white;*/
+
+$--button-mini-padding-vertical: 4px;
+$--button-mini-padding-horizontal: 8px;
+
+$--switch-on-color: #E97A18;
+
+$--select-dropdown-border: #161719;
+$--select-option-selected-font-color: #E97A18;
+$--select-input-focus-border-color: #161719;
+$--cascader-menu-border: #161719;
+$--cascader-menu-selected-font-color: #E97A18;
+
+$--radio-checked-font-color: #E97A18;
+$--radio-checked-icon-color: #E97A18;
+$--radio-checked-input-border-color: #E97A18;
+
+$--checkbox-background-color: #393A3C;
+$--checkbox-input-border: #000;
+
+$--tooltip-color: $--color-text-regular;
+$--tooltip-fill: #000;
+$--tooltip-border-color: #000;
+
+$--menu-background-color: #000;
+$--menu-item-font-color: $--color-text-regular;
+$--menu-item-hover-fill: #303133;
+
+//$--border-color-light: transparent;
+
+$--message-background-color: #303133;
+
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";

@@ -1,0 +1,20 @@
+{
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "editor.fontFamily": "YaHei-Consolas-Hybrid, Consolas, 'Courier New', monospace",
+    "editor.fontSize": 16,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "markdown.styles": [
+        ".vscode\\github.css",
+        ".vscode\\dark-material.css"
+    ],
+    "vetur.format.enable": true,
+    "vetur.validation.template": false,
+    "vetur.format.options.tabSize": 4,
+    "vetur.format.options.useTabs": true,
+    "vetur.format.defaultFormatter.html": "prettyhtml",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
+}
