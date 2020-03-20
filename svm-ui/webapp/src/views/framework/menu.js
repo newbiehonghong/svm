@@ -54,7 +54,7 @@ export default [
             {
                 icon: 'icon-config-permission',
                 index: 'security_permission',
-                title: '权限项管理'
+                title: '权限管理'
             }
         ]
     }

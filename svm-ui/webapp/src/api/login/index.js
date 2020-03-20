@@ -1,4 +1,4 @@
-import api from '@/utils/request';
+import request from '@/utils/request';
 import md5 from 'md5';
 
 /**
@@ -7,7 +7,7 @@ import md5 from 'md5';
  * @param {String} password 密码 
  */
 export function login(name, password) {
-    return api.request({
+    return request({
         url: '/login',
         data: {
             'name': name,
@@ -23,7 +23,7 @@ export function login(name, password) {
  * @param {String} newPad 新密码 
  */
 export function changePwd(name, oldPwd, newPwd) {
-    return api.request({
+    return request({
         url: '/changePwd',
         data: {
             'name': name,

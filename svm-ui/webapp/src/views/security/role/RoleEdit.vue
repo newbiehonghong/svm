@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <el-form ref="roleForm" :model="row" label-width="80px">
+        <el-form ref="roleForm" :model="row" :rules="rules" label-width="80px">
             <el-form-item label="角色标识" prop="id" v-if="added">
                 <el-input v-model="row.id"></el-input>
             </el-form-item>

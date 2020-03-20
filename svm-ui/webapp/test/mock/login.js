@@ -5,7 +5,7 @@ mock('/login', options => {
         return {
             token: 'aaa',
             nickname: '测试人员',
-            permissions: ['security_p_admin']
+            permissions: ['p_security_permission']
         };
     } else {
         return {
