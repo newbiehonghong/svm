@@ -32,7 +32,7 @@ CREATE TABLE sys_permission
 (
     permission_id varchar(64) NOT NULL,
     name varchar(64),
-	type varchar(16),
+	permission_type varchar(16),
     CONSTRAINT sys_permission_pk PRIMARY KEY (permission_id)
 );
 

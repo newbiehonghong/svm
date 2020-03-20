@@ -3,10 +3,11 @@
 <mapper namespace="svm.app.dao.security.PermissionMapper">
 
     <resultMap id="BaseResultMap" type="svm.app.entity.security.Permission">
-        <id column="permission_id" jdbcType="VARCHAR" property="id" />
+        <id column="permission_id" property="id" />
+        <result column="permission_type" property="type" />
     </resultMap>
     <sql id="BaseColumnList">
-        permission_id, name, type
+        permission_id, name, permission_type
     </sql>
 
     <insert id="save" parameterType="svm.app.entity.security.Permission">
@@ -15,7 +16,7 @@
     </insert>
     <update id="update" parameterType="svm.app.entity.security.Permission">
         update sys_permission
-        set name = #{name,jdbcType=VARCHAR}, type = #{type,jdbcType=VARCHAR}
+        set name = #{name,jdbcType=VARCHAR}, permission_type = #{type,jdbcType=VARCHAR}
         where permission_id = #{id,jdbcType=VARCHAR}
     </update>
     <delete id="delete" parameterType="java.lang.String">
@@ -25,20 +26,20 @@
     <select id="queryPermissions" parameterType="java.lang.String" resultMap="BaseResultMap">
         select <include refid="BaseColumnList" />
         from sys_permission
-        <if test="type != null and type != 'all'"> where type=#{type}</if>
-         order by type, permission_id
+        <if test="type != null and type != 'all'"> where permission_type=#{type}</if>
+         order by permission_type, permission_id
     </select>
 
     <select id="getServicePermissions" parameterType="java.lang.Long" resultType="java.lang.String">
         select distinct a.permission_id
         from sys_permission a, sys_role_permission_map b, sys_user_role_map c
-        where a.type='service' and a.permission_id=b.permission_id
+        where a.permission_type='service' and a.permission_id=b.permission_id
         and b.role_id=c.role_id and c.user_id=#{userId}
     </select>
     <select id="getPagePermissions" parameterType="java.lang.Long" resultType="java.lang.String">
         select distinct a.permission_id
         from sys_permission a, sys_role_permission_map b, sys_user_role_map c
-        where a.type='page' and a.permission_id=b.permission_id
+        where a.permission_type='page' and a.permission_id=b.permission_id
         and b.role_id=c.role_id and c.user_id=#{userId}
     </select>
 </mapper>

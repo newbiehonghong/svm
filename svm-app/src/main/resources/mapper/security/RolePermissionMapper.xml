@@ -7,7 +7,7 @@
     </select>
     <select id="queryPermissionsByRoleId" resultType="java.lang.String">
         select b.permission_id from sys_permission a, sys_role_permission_map b
-        where a.permission_id=b.permission_id and a.type=#{type} and b.role_id=#{roleId}
+        where a.permission_id=b.permission_id and a.permission_type=#{type} and b.role_id=#{roleId}
     </select>
     <delete id="deleteByPermissionId" parameterType="java.lang.String">
         delete from sys_role_permission_map where permission_id=#{permissionId}

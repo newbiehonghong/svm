@@ -13,9 +13,9 @@ insert into sys_user_role_map(user_id, role_id)
 insert into sys_user_role_map(user_id, role_id)
  values (2, 'test');
 
-insert into sys_permission(permission_id, name, type)
- values ('p_security_permission', '权限管理', 'p');
-insert into sys_permission(permission_id, name, type)
+insert into sys_permission(permission_id, name, permission_type)
+ values ('p_security_permission', '权限管理', 'page');
+insert into sys_permission(permission_id, name, permission_type)
  values ('s_security_permission', '权限管理', 'service');
  
 insert into sys_role_permission_map(role_id, permission_id)
