@@ -50,9 +50,11 @@ export default {
 			});
 		},
 		doSave() {
-			saveRolePermissions(this.id, this.selectedPermissions).then(res => {
-				this.goBack();
-			});
+			saveRolePermissions(this.permissionType, this.id, this.selectedPermissions).then(
+				res => {
+					this.goBack();
+				}
+			);
 		},
 		goBack() {
 			this.$emit("backward", "list");

@@ -69,8 +69,8 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void savePermissionsMap(String roleId, String[] permissionIds) {
-        rolePermissionMapper.deleteByRoleId(roleId);
+    public void savePermissionsMap(String permissionType, String roleId, String[] permissionIds) {
+        rolePermissionMapper.deleteByTypeAndRoleId(permissionType, roleId);
         if(permissionIds.length > 0) {
             rolePermissionMapper.saveRolePermissions(roleId, permissionIds);
         }

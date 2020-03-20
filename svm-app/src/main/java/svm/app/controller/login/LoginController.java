@@ -36,7 +36,7 @@ public class LoginController {
 
         String password = loginUser.getPwd();
         //password = MD5Utils.digest(password);
-        if(!password.equals(user.getPassword())) {
+        if(!user.getPassword().equals(password)) {
             throw new BusinessException(401, MESSAGE_INVALID_INPUT);
         }
 

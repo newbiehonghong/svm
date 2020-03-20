@@ -59,9 +59,10 @@ export function saveRoleUsers(roleId, userIds) {
 
 /**
  * 保存角色下的权限项信息
+ * @param {String} permissionType 权限项类型 
  * @param {String} roleId 角色ID 
  * @param {Array} permissionIds 权限项ID数组
  */
-export function saveRolePermissions(roleId, permissionIds) {
-    return request({ url: '/security/role/saveRolePermissions', params: { roleId }, data: permissionIds });
+export function saveRolePermissions(permissionType, roleId, permissionIds) {
+    return request({ url: '/security/role/saveRolePermissions', params: { permissionType, roleId }, data: permissionIds });
 };

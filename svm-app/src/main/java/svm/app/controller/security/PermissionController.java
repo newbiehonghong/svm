@@ -1,7 +1,5 @@
 package svm.app.controller.security;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import svm.app.common.annotation.RequiredPermission;
@@ -25,8 +23,6 @@ public class PermissionController {
 
     @Autowired
     private RoleService roleService;
-
-    private Logger logger = LoggerFactory.getLogger(PermissionController.class);
 
     @PostMapping("/save")
     public Permission savePermission(@RequestBody Permission permission) {

@@ -19,5 +19,5 @@ public interface RoleService {
 
     void saveUsersMap(String roleId, Long[] userIds);
 
-    void savePermissionsMap(String roleId, String[] permissionIds);
+    void savePermissionsMap(String permissionType, String roleId, String[] permissionIds);
 }

@@ -7,8 +7,8 @@ spring:
     filters: stat
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/svm
-    username: sample
-    password: 4383C350B169944F
+    username: postgres
+    password: DC22B1536E6C297A9FDE9E33ED42467D
     initial-size: 1
     min-idle: 1
     max-active: 20

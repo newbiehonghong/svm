@@ -13,6 +13,8 @@ public interface RolePermissionMapper {
 
     void deleteByRoleId(@Param("roleId") String roleId);
 
+    void deleteByTypeAndRoleId(@Param("permissionType") String permissionType, @Param("roleId") String roleId);
+
     void savePermissionRoles(@Param("permissionId") String permissionId, @Param("roleIds") String[] roleIds);
 
     void saveRolePermissions(@Param("roleId") String roleId, @Param("permissionIds") String[] permissionIds);

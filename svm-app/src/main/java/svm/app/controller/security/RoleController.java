@@ -59,7 +59,7 @@ public class RoleController {
     }
 
     @PostMapping("/saveRolePermissions")
-    public void savePermissions(@RequestParam String roleId, @RequestBody String[] permissionIds) {
-        roleService.savePermissionsMap(roleId, permissionIds);
+    public void savePermissions(@RequestParam String permissionType, @RequestParam String roleId, @RequestBody String[] permissionIds) {
+        roleService.savePermissionsMap(permissionType, roleId, permissionIds);
     }
 }
