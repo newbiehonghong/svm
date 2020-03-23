@@ -6,9 +6,9 @@
         </div>
         <el-table :data="data" ref="userTable" @selection-change="doSelectionChange" stripe>
             <el-table-column type="selection" width="55"></el-table-column>
-            <el-table-column prop="birthday" label="出生日期" sortable width="150"></el-table-column>
-            <el-table-column prop="name" label="姓名" width="150"></el-table-column>
-            <el-table-column prop="province" label="省" :formatter="decode" width="120"></el-table-column>
+            <el-table-column prop="birthday" label="出生日期" sortable width="200"></el-table-column>
+            <el-table-column prop="name" label="姓名" width="auto"></el-table-column>
+            <el-table-column prop="province" label="省" :formatter="decode" width="200"></el-table-column>
             <el-table-column label="操作" width="140">
                 <template slot-scope="scope">
                     <el-tooltip content="编辑" placement="bottom">

@@ -10,7 +10,7 @@
                 ></el-date-picker>
             </el-form-item>
             <el-form-item label="姓名">
-                <el-input v-model="row.name"></el-input>
+                <el-input v-model="row.name" style="width:220px"></el-input>
             </el-form-item>
             <el-form-item label="省">
                 <el-select v-model="row.province" clearable placeholder="请选择">
