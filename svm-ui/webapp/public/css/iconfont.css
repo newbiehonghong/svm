@@ -42,139 +42,84 @@
     font-size: 18px;
 }
 
+/* 每次更新替换下面内容 */
 
-.icon-admin-return-full-screen:before {
-    content: "\e79d";
-  }
-  
-  .icon-admin-full-screen:before {
-    content: "\e655";
-  }
-  
-  .icon-monitor-token:before {
-    content: "\e749";
-  }
-  
-  .icon-route-manage:before {
-    content: "\e604";
-  }
-  
-  .icon-admin-client-tool:before {
-    content: "\e605";
-  }
-  
-  .icon-admin-change-password:before {
-    content: "\e607";
-  }
-  
-  .icon-admin-log-clean:before {
-    content: "\e608";
-  }
-  
-  .icon-admin-logout:before {
-    content: "\e609";
-  }
-  
-  .icon-config-application:before {
-    content: "\e60a";
-  }
-  
-  .icon-admin:before {
-    content: "\e60b";
-  }
-  
-  .icon-config-permission:before {
-    content: "\e60c";
-  }
-  
-  .icon-defense-degrade:before {
-    content: "\e60d";
-  }
-  
-  .icon-defense-system:before {
-    content: "\e60e";
-  }
-  
-  .icon-config-property:before {
-    content: "\e60f";
-  }
-  
-  .icon-defense-flow:before {
-    content: "\e610";
-  }
-  
-  .icon-defense-authority:before {
-    content: "\e611";
-  }
-  
-  .icon-down:before {
-    content: "\e612";
-  }
-  
-  .icon-monitor-service:before {
-    content: "\e613";
-  }
-  
-  .icon-config:before {
-    content: "\e614";
-  }
-  
-  .icon-delete:before {
-    content: "\e615";
-  }
-  
-  .icon-monitor:before {
-    content: "\e616";
-  }
-  
-  .icon-query:before {
-    content: "\e617";
-  }
-  
-  .icon-monitor-log-view:before {
-    content: "\e618";
-  }
-  
-  .icon-route:before {
-    content: "\e619";
-  }
-  
-  .icon-edit:before {
-    content: "\e61a";
-  }
-  
-  .icon-save:before {
-    content: "\e61c";
-  }
-  
-  .icon-up:before {
-    content: "\e61d";
-  }
-  
-  .icon-route-group-manage:before {
-    content: "\e61e";
-  }
-  
-  .icon-view:before {
-    content: "\e61f";
-  }
-  
-  .icon-defense:before {
-    content: "\e620";
-  }
-  
-  .icon-rollback:before {
-    content: "\e621";
-  }
-  
-  .icon-route-transaction-manage:before {
-    content: "\e622";
-  }
-  
-  .icon-monitor-dashboard:before {
-    content: "\e623";
-  }
-  
-  .icon-config-service:before {
-    content: "\e624";
-  }
+.icon-group:before {
+  content: "\e7d9";
+}
+
+.icon-nav:before {
+  content: "\e61f";
+}
+
+.icon-tag:before {
+  content: "\e649";
+}
+
+.icon-form:before {
+  content: "\e665";
+}
+
+.icon-logout:before {
+  content: "\e89a";
+}
+
+.icon-save:before {
+  content: "\e621";
+}
+
+.icon-fullscreen-on:before {
+  content: "\e6e0";
+}
+
+.icon-fullscreen-off:before {
+  content: "\e66a";
+}
+
+.icon-download:before {
+  content: "\e77a";
+}
+
+.icon-upload:before {
+  content: "\e77b";
+}
+
+.icon-flow-h:before {
+  content: "\e77c";
+}
+
+.icon-table:before {
+  content: "\e780";
+}
+
+.icon-security:before {
+  content: "\e789";
+}
+
+.icon-sample:before {
+  content: "\e78c";
+}
+
+.icon-user-setting:before {
+  content: "\e618";
+}
+
+.icon-user-permission:before {
+  content: "\e655";
+}
+
+.icon-setting:before {
+  content: "\eb8d";
+}
+
+.icon-user:before {
+  content: "\e7ae";
+}
+
+.icon-lock:before {
+  content: "\e7c9";
+}
+
+.icon-flow-v:before {
+  content: "\e63e";
+}

@@ -1,58 +1,53 @@
 export default [
     {
-        icon: 'icon-config-application',
+        icon: 'icon-sample',
         index: 'sample',
         title: '开发样例',
         subs: [
             {
-                icon: 'icon-config-application',
+                icon: 'icon-form',
                 index: 'form',
                 title: '基本表单'
             },
             {
-                icon: 'icon-config-application',
+                icon: 'icon-table',
                 index: 'table',
                 title: '基础表格'
             },
             {
-                icon: 'icon-config-application',
+                icon: 'icon-tag',
                 index: 'tabs',
                 title: 'tab选项卡'
             },
             {
-                icon: 'icon-config-application',
+                icon: 'icon-upload',
                 index: 'upload',
                 title: '文件上传'
             },
             {
-                icon: 'icon-config-application',
+                icon: 'icon-download',
                 index: 'download',
                 title: '文件下载'
-            },
-            {
-                icon: 'icon-config-application',
-                index: 'test',
-                title: '临时测试'
             }
         ]
     },
     {
-        icon: 'icon-config',
+        icon: 'icon-security',
         index: 'security',
         title: '权限管理',
         subs: [
             {
-                icon: 'icon-config-application',
+                icon: 'icon-user',
                 index: 'security_user',
                 title: '用户管理'
             },
             {
-                icon: 'icon-config-service',
+                icon: 'icon-group',
                 index: 'security_role',
                 title: '角色管理'
             },
             {
-                icon: 'icon-config-permission',
+                icon: 'icon-user-permission',
                 index: 'security_permission',
                 title: '权限管理'
             }

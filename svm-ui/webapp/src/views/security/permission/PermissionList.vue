@@ -10,7 +10,7 @@
                     placeholder="选择权限类型过滤"
                 >
                     <template slot="prefix">
-                        <i class="el-icon-search el-input__icon"></i>
+                        <i class="el-input__icon el-icon-search"></i>
                     </template>
                     <el-option
                         v-for="item in permission_type"
@@ -38,7 +38,7 @@
             <el-table-column label="操作" width="260">
                 <template slot-scope="scope">
                     <el-tooltip content="分配角色" placement="bottom">
-                        <el-button size="text" icon="el-icon-user" @click="doRole(scope)"></el-button>
+                        <el-button size="text" icon="icon-group" @click="doRole(scope)"></el-button>
                     </el-tooltip>
                     <el-tooltip content="编辑" placement="bottom">
                         <el-button size="text" icon="el-icon-edit" @click="doEdit(scope)"></el-button>

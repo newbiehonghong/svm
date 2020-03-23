@@ -37,25 +37,23 @@
                 </template>
             </el-menu>
         </div>
-        <div class="admin_menu">
+        <div class="setting_menu">
             <el-menu :collapse="true">
                 <el-submenu index="9" key="9">
                     <template slot="title">
-                        <i class="icon-admin"></i>
-                        <span slot="title">ADMIN</span>
+                        <i class="icon-setting"></i>
+                        <span slot="title">设置</span>
                     </template>
                     <el-menu-item index="91" key="91" @click="handleFullScreen">
-                        <i
-                            :class="[!fullscreen? 'icon-admin-full-screen':'icon-admin-return-full-screen']"
-                        ></i>
-                        <span>{{!fullscreen ? '全屏' : '退出全屏'}}</span>
+                        <i :class="[!fullscreen? 'icon-fullscreen-on':'icon-fullscreen-off']"></i>
+                        <span>{{!fullscreen ? '全屏显示' : '退出全屏'}}</span>
                     </el-menu-item>
                     <el-menu-item index="92" key="92" @click="changePwd">
-                        <i class="icon-admin-change-password"></i>
+                        <i class="icon-user-setting"></i>
                         <span>修改密码</span>
                     </el-menu-item>
                     <el-menu-item index="93" key="93" @click="logout">
-                        <i class="icon-admin-logout"></i>
+                        <i class="icon-logout"></i>
                         <span>退出登录</span>
                     </el-menu-item>
                 </el-submenu>
@@ -79,7 +77,6 @@ export default {
 			dialogVisible: false
 		};
 	},
-
 	computed: {
 		menus() {
 			let routeList = [];
@@ -114,6 +111,13 @@ export default {
 			return this.$route.path.replace("/", "");
 		}
 	},
+	created() {
+		if (screenfull.enabled) {
+			screenfull.on("change", () => {
+				this.fullscreen = !this.fullscreen;
+			});
+		}
+	},
 	methods: {
 		showDashboard() {
 			this.$router.push("/dashboard");
@@ -130,7 +134,6 @@ export default {
 				return false;
 			}
 			screenfull.toggle();
-			this.fullscreen = !this.fullscreen;
 		},
 		changePwd() {
 			this.dialogVisible = true;
@@ -174,7 +177,7 @@ export default {
 		height: 380px;
 		flex-grow: 10;
 	}
-	.admin_menu {
+	.setting_menu {
 		flex-grow: 1;
 		padding-bottom: 10px;
 	}

@@ -20,15 +20,15 @@
             <el-table-column label="操作" width="360">
                 <template slot-scope="scope">
                     <el-tooltip content="分配用户" placement="bottom">
-                        <el-button size="text" icon="el-icon-user" @click="doUser(scope)"></el-button>
+                        <el-button size="text" icon="icon-user" @click="doUser(scope)"></el-button>
                     </el-tooltip>
                     <el-tooltip content="分配页面权限" placement="bottom">
-                        <el-button size="text" icon="el-icon-menu" @click="doPagePermission(scope)"></el-button>
+                        <el-button size="text" icon="icon-flow-h" @click="doPagePermission(scope)"></el-button>
                     </el-tooltip>
                     <el-tooltip content="分配服务权限" placement="bottom">
                         <el-button
                             size="text"
-                            icon="el-icon-s-operation"
+                            icon="icon-flow-v"
                             @click="doServicePermission(scope)"
                         ></el-button>
                     </el-tooltip>

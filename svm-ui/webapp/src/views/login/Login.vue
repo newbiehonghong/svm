@@ -14,7 +14,9 @@
                                 placeholder="输入用户名"
                                 v-focus
                                 @keyup.enter.native="changeFocus"
-                            ></el-input>
+                            >
+                                <i slot="prefix" class="el-input__icon icon-user"></i>
+                            </el-input>
                         </el-form-item>
                         <el-form-item prop="password">
                             <el-input
@@ -23,7 +25,9 @@
                                 ref="password"
                                 placeholder="输入密码"
                                 @keyup.enter.native="doLogin"
-                            ></el-input>
+                            >
+                                <i slot="prefix" class="el-input__icon icon-lock"></i>
+                            </el-input>
                         </el-form-item>
                         <div class="btn-row">
                             <el-button

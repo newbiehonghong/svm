@@ -20,7 +20,7 @@
             <el-table-column label="操作" width="260">
                 <template slot-scope="scope">
                     <el-tooltip content="分配角色" placement="bottom">
-                        <el-button size="text" icon="el-icon-user" @click="doRole(scope)"></el-button>
+                        <el-button size="text" icon="icon-group" @click="doRole(scope)"></el-button>
                     </el-tooltip>
                     <el-tooltip content="编辑" placement="bottom">
                         <el-button size="text" icon="el-icon-edit" @click="doEdit(scope)"></el-button>

@@ -3,7 +3,7 @@
         <el-row align="middle" type="flex">
             <el-col style="width:20px">
                 <div class="page_header_icon">
-                    <i class="icon-route-group-manage"></i>
+                    <i class="icon-nav"></i>
                 </div>
             </el-col>
             <el-col style="padding-left: 10px">
