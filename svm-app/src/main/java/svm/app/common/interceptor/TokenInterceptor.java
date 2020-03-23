@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import svm.app.common.session.LoginConstants;
 import svm.app.common.session.SessionContext;
 import svm.app.common.session.Token;
 import svm.app.common.session.UserSession;
@@ -23,6 +22,8 @@ public class TokenInterceptor extends BaseInterceptor {
     @Autowired
     private Environment env;
 
+    public static final String HEADER_TOKEN = "Authorization";
+
     private static final String MESSAGE_NO_TOKEN = "未登录";
 
     private static final String MESSAGE_INVALID_TOKEN = "无效token";
@@ -39,17 +40,18 @@ public class TokenInterceptor extends BaseInterceptor {
 
     @Override
     protected boolean doPreHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String token = request.getHeader(LoginConstants.HEADER_TOKEN);
+        String token = request.getHeader(HEADER_TOKEN);
         if(StringUtils.isEmpty(token)) {
-            token = request.getParameter(LoginConstants.HEADER_TOKEN);
+            token = request.getParameter(HEADER_TOKEN);
             if(StringUtils.isEmpty(token)) {
                 throw new BusinessException(401, MESSAGE_NO_TOKEN);
             }
         }
 
         long userId, lastAccessTime;
+        Token userToken;
         try {
-            Token userToken = Token.parse(token);
+            userToken = Token.parse(token);
             userId = userToken.getUserId();
             lastAccessTime = userToken.getLastAccessTime();
         } catch (Exception ex) {
@@ -65,6 +67,7 @@ public class TokenInterceptor extends BaseInterceptor {
             throw new BusinessException(400, MESSAGE_TIMEOUT);
         }
 
+        response.setHeader(HEADER_TOKEN, userToken.update().toString());
         SessionContext.set(userSession);
         return true;
     }

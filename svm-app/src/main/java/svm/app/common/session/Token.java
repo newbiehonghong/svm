@@ -50,12 +50,9 @@ public class Token {
         return token;
     }
 
-    public static Token refresh(Token oldToken) {
-        Token token = new Token();
-        token.setUserId(oldToken.userId);
-        token.setLastAccessTime(System.currentTimeMillis());
-
-        return token;
+    public Token update() {
+        this.setLastAccessTime(System.currentTimeMillis());
+        return this;
     }
 
     @Override

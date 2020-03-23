@@ -1,18 +1,16 @@
 package svm.app.controller.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import svm.app.common.session.LoginConstants;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import svm.app.common.session.Token;
-import svm.app.dao.security.UserMapper;
 import svm.app.entity.security.User;
 import svm.app.service.security.PermissionService;
 import svm.app.service.security.UserService;
-import svm.common.crypto.MD5Utils;
 import svm.common.exception.BusinessException;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
