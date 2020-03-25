@@ -15,7 +15,6 @@ bin/
 .vscode/
 
 # local
-development/
-test/
+application.yml
 
 
