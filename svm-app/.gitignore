@@ -1,3 +1,21 @@
-target
-.idea
-.iml
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Maven
+target/
+
+# Eclipse
+.settings/
+bin/
+.classpath
+.project
+
+# VS Code
+.vscode/
+
+# local
+development/
+test/
+
+

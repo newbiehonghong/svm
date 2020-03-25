@@ -2,13 +2,11 @@ logging:
   level:
     root: info
     org.springframework.jdbc: debug
-    com.neusoft.heimdall: debug
-    #org.springframework.jdbc.datasource: debug
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/svm
-    username: sample
+    username: postgres
     password: f3295bd5eab14d012ebc830b4b57b924
     initial-size: 1
     min-idle: 1
