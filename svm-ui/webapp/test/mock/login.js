@@ -14,3 +14,7 @@ mock('/login', options => {
         }
     }
 });
+
+mock('/changePwd', options => {
+    return {};
+});

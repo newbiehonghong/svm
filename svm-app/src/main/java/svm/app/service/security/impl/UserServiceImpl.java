@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user) {
         long id = iGenerator.generateLong();
         user.setId(id);
-        user.setPassword(MD5Utils.digest(user.getPassword()));
+        //user.setPassword(MD5Utils.digest(user.getPassword()));
         user.setCreateTime(new Date(System.currentTimeMillis()));
         userMapper.save(user);
         return user;
@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user) {
         userMapper.update(user);
         return user;
+    }
+
+    @Override
+    public void updatePassword(Long id, String password) {
+        userMapper.updatePassword(id, password);
     }
 
     @Override

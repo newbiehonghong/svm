@@ -44,6 +44,10 @@
                         <i class="icon-setting"></i>
                         <span slot="title">设置</span>
                     </template>
+                    <el-menu-item index="90" key="90" class="item-user" disabled>
+                        <i class="icon-user"></i>
+                        <span>{{nickname}}</span>
+                    </el-menu-item>
                     <el-menu-item index="91" key="91" @click="handleFullScreen">
                         <i :class="[!fullscreen? 'icon-fullscreen-on':'icon-fullscreen-off']"></i>
                         <span>{{!fullscreen ? '全屏显示' : '退出全屏'}}</span>
@@ -74,7 +78,8 @@ export default {
 		return {
 			items: menu,
 			fullscreen: false,
-			dialogVisible: false
+			dialogVisible: false,
+			nickname: ""
 		};
 	},
 	computed: {
@@ -112,6 +117,7 @@ export default {
 		}
 	},
 	created() {
+		this.nickname = this.$store.getters.nickname;
 		if (screenfull.enabled) {
 			screenfull.on("change", () => {
 				this.fullscreen = !this.fullscreen;
@@ -186,8 +192,11 @@ export default {
 .el-submenu__title i {
 	color: #d8d9da;
 }
-
 .el-menu-item i {
 	color: #d8d9da;
+}
+.item-user {
+	opacity: 1;
+	color: #ffffff;
 }
 </style>

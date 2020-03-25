@@ -18,15 +18,13 @@ export function login(name, password) {
 
 /**
  * 修改密码
- * @param {String} name 用户名
  * @param {String} oldPwd 旧密码 
  * @param {String} newPad 新密码 
  */
-export function changePwd(name, oldPwd, newPwd) {
+export function changePwd(oldPwd, newPwd) {
     return request({
         url: '/changePwd',
         data: {
-            'name': name,
             'oldPwd': md5(oldPwd),
             'newPwd': md5(newPwd)
         }

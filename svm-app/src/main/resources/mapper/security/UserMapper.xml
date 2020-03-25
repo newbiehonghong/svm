@@ -24,10 +24,11 @@
     <update id="update" parameterType="svm.app.entity.security.User">
         update sys_user
             set name = #{name,jdbcType=VARCHAR},
-                nickname = #{nickname,jdbcType=VARCHAR},
-                password = #{password,jdbcType=VARCHAR},
-                create_time = #{createTime,jdbcType=DATE}
-            where user_id = #{id,jdbcType=NUMERIC}
+                nickname = #{nickname,jdbcType=VARCHAR}
+            where user_id = #{id}
+    </update>
+    <update id="updatePassword">
+        update sys_user set password = #{password} where user_id = #{id}
     </update>
     <delete id="delete" parameterType="java.lang.Long">
         delete from sys_user
@@ -46,6 +47,6 @@
     </select>
     <select id="queryAllUsers" resultMap="BaseResultMap">
         select <include refid="BaseColumnList" />
-        from sys_user
+        from sys_user where user_id != 1
     </select>
 </mapper>

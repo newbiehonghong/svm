@@ -22,6 +22,9 @@
                     <el-tooltip content="分配角色" placement="bottom">
                         <el-button size="text" icon="icon-group" @click="doRole(scope)"></el-button>
                     </el-tooltip>
+                    <el-tooltip content="修改密码" placement="bottom">
+                        <el-button size="text" icon="el-icon-lock" @click="doPassword(scope)"></el-button>
+                    </el-tooltip>
                     <el-tooltip content="编辑" placement="bottom">
                         <el-button size="text" icon="el-icon-edit" @click="doEdit(scope)"></el-button>
                     </el-tooltip>
@@ -101,6 +104,10 @@ export default {
 					this.data.splice($index, 1);
 				});
 			});
+		},
+		doPassword({ $index, row }) {
+			var params = { row: Object.assign({}, row) };
+			this.$emit("forward", "pwd", "修改密码", params);
 		},
 		doRole({ $index, row }) {
 			var params = { id: row.id };

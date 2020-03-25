@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import svm.app.common.session.SessionContext;
 import svm.app.common.session.Token;
 import svm.app.entity.security.User;
 import svm.app.service.security.PermissionService;
@@ -28,13 +29,13 @@ public class LoginController {
     public LoginResponse login(@RequestBody LoginUser loginUser) {
         String userName = loginUser.getName();
         User user = userService.getUserByName(userName);
-        if(user == null) {
+        if (user == null) {
             throw new BusinessException(401, MESSAGE_INVALID_INPUT);
         }
 
         String password = loginUser.getPwd();
         //password = MD5Utils.digest(password);
-        if(!user.getPassword().equals(password)) {
+        if (!user.getPassword().equals(password)) {
             throw new BusinessException(401, MESSAGE_INVALID_INPUT);
         }
 
@@ -55,18 +56,16 @@ public class LoginController {
     }
 
     @PostMapping("/changePwd")
-    public void changePassword(@RequestBody ChangePwdUser user) {
-        String userName = user.getName();
-        User loginUser = userService.getUserByName(userName);
-        if (loginUser != null) {
-            if (loginUser.getPassword().equals(user.getOldPwd())) {
-                loginUser.setPassword(user.getNewPwd());
-                userService.updateUser(loginUser);
-                return;
-            }
-            throw new BusinessException(401, "密码错误");
+    public void changePassword(@RequestBody ChangePwdDTO pwdDTO) {
+        User loginUser = SessionContext.get().getUser();
+        if (loginUser == null) {
+            throw new BusinessException(401, "未登录");
         }
 
-        throw new BusinessException(401, "用户名或密码错误");
+        if (loginUser.getPassword().equals(pwdDTO.getOldPwd())) {
+            userService.updatePassword(loginUser.getId(), pwdDTO.getNewPwd());
+        } else {
+            throw new BusinessException(401, "密码错误");
+        }
     }
 }

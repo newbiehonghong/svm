@@ -9,6 +9,10 @@ mock('/security/user/update', options => {
     return data;
 });
 
+mock('/security/user/updatePwd', options => {
+    return {};
+});
+
 mock("/security/user/delete/.*", options => {
     return {}
 });

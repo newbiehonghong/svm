@@ -34,6 +34,11 @@ public class UserController {
         return userService.updateUser(user);
     }
 
+    @PostMapping("/updatePwd")
+    public void updatePassword(@RequestBody User user) {
+        userService.updatePassword(user.getId(), user.getPassword());
+    }
+
     @PostMapping("/delete/{id}")
     public void deleteUser(@PathVariable Long id) {
         List<String> roles = roleService.queryByUserId(id);

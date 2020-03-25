@@ -2,13 +2,16 @@
     <div class="container">
         <el-form ref="userForm" :model="row" :rules="rules" label-width="80px">
             <el-form-item label="账号" prop="name">
-                <el-input v-model="row.name"></el-input>
+                <el-input v-model="row.name" style="width:220px"></el-input>
             </el-form-item>
             <el-form-item label="姓名" prop="nickname">
-                <el-input v-model="row.nickname"></el-input>
+                <el-input v-model="row.nickname" style="width:220px"></el-input>
             </el-form-item>
-            <el-form-item label="密码" v-if="added" prop="password">
-                <el-input type="password" v-model="row.password"></el-input>
+            <el-form-item label="密码" prop="password" v-if="added">
+                <el-input type="password" v-model="row.password" style="width:220px"></el-input>
+            </el-form-item>
+            <el-form-item label="确认密码" prop="confirmPwd" v-if="added">
+                <el-input type="password" v-model="row.confirmPwd" style="width:220px"></el-input>
             </el-form-item>
 
             <div class="footer-box">
@@ -49,13 +52,29 @@ export default {
 				this.rules["password"] = [
 					{ required: true, message: "请输入密码", trigger: "blur" }
 				];
+				this.rules["confirmPwd"] = [
+					{
+						required: true,
+						trigger: "blur",
+						validator: (rule, value, callback) => {
+							if (value == "") {
+								callback(new Error("请输入确认密码"));
+							} else if (value !== this.row.password) {
+								callback(new Error("两次输入的密码不一致"));
+							} else {
+								callback();
+							}
+						}
+					}
+				];
 			}
 		},
 		resetRow() {
 			this.row = {
-				name: null,
-				nickname: null,
-				password: null
+				name: "",
+				nickname: "",
+				password: "",
+				confirmPwd: "" //不把这个属性放在row里，校验函数取不到值
 			};
 		},
 		doSave() {
@@ -65,6 +84,7 @@ export default {
 				}
 
 				if (this.added) {
+					delete this.row.confirmPwd;
 					saveUser(this.row).then(res => {
 						this.$message({ message: "保存成功", type: "success" });
 						this.goBack(res, true);

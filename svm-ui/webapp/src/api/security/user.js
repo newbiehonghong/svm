@@ -1,4 +1,5 @@
 import request from '@/utils/request';
+import md5 from "md5";
 
 /****************** 用户 ************************/
 /**
@@ -6,6 +7,7 @@ import request from '@/utils/request';
  * @param {Object} user 用户信息
  */
 export function saveUser(user) {
+    user.password = md5(user.password);
     return request({ url: '/security/user/save', data: user });
 };
 
@@ -15,6 +17,16 @@ export function saveUser(user) {
  */
 export function updateUser(user) {
     return request({ url: '/security/user/update', data: user });
+};
+
+/**
+ * 修改密码
+ * @param {String} user 用户信息 
+ * 
+ */
+export function updatePassword(user) {
+    user.password = md5(user.password);
+    return request({ url: '/security/user/updatePwd', data: user });
 };
 
 /**

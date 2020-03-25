@@ -5,8 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ChangePwdUser {
-    private String name;
+public class ChangePwdDTO {
     private String oldPwd;
     private String newPwd;
 }
