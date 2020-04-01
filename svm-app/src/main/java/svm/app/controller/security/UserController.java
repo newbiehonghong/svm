@@ -48,18 +48,18 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-    @PostMapping("/get/{id}")
+    @RequestMapping("/get/{id}")
     public Object getUser(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
-    @PostMapping("/queryAll")
+    @RequestMapping("/queryAll")
     @ResponseBody
     public Object queryAllUsers() {
         return userMapper.queryAllUsers();
     }
 
-    @PostMapping("/queryByRoleId/{roleId}")
+    @RequestMapping("/queryByRoleId/{roleId}")
     public Object queryByRoleId(@PathVariable String roleId) {
         return userService.queryByRoleId(roleId);
     }
