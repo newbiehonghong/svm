@@ -21,7 +21,7 @@
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <okhttp.version>3.8.1</okhttp.version>
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
-        <fastjson.version>1.2.47</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <jackson.version>2.9.0</jackson.version>
         <commons-cli.version>1.4</commons-cli.version>
         <commons-io.version>2.4</commons-io.version>
